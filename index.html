@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Reniel Medrano — Creative Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Syne+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --mint: #a8d5c2;
+        --mint-d: #6baa92;
+        --mint-pale: #e8f5f0;
+        --mint-glow: rgba(168, 213, 194, 0.18);
+        --ink: #0f0f0d;
+        --gray: #5c5c58;
+        --gray-l: #9a9a94;
+        --white: #fff;
+        --cream: #f9f8f4;
+        --offwhite: #f4f3ef;
+        
+        /* Enhanced type scale */
+        --text-xs: 0.8125rem;
+        --text-sm: 0.9375rem;
+        --text-base: 1.0625rem;
+        --text-md: 1.1875rem;
+        --text-lg: 1.375rem;
+        --text-xl: 1.75rem;
+        --text-2xl: 2.25rem;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 100%;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--white);
+        color: var(--ink);
+        overflow-x: hidden;
+        cursor: none;
+        font-size: var(--text-base);
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      /* Base readability improvements */
+      p, li, .cdesc, .svc-desc, .proc-desc, .ttxt, .hero-desc, .cta-sub {
+        font-size: var(--text-base);
+        line-height: 1.7;
+        letter-spacing: -0.01em;
+      }
+
+      /* Headings */
+      h1, h2, h3, .hero-title, .sec-title, .cta-title, .about-h {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+
+      /* Custom cursor */
+      #cur {
+        width: 10px;
+        height: 10px;
+        background: var(--ink);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.22s, height 0.22s;
+        mix-blend-mode: difference;
+      }
+      #cur.big { width: 56px; height: 56px; }
+      #cur-txt {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+        font-family: "Syne Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        color: var(--white);
+        opacity: 0;
+        transition: opacity 0.18s;
+        white-space: nowrap;
+        font-weight: 500;
+      }
+      #cur-txt.show { opacity: 1; }
+      #cur-ring {
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(15, 15, 13, 0.18);
+        border-radius: 50%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s, height 0.3s;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        padding: 28px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.35s, backdrop-filter 0.35s, border-bottom 0.35s;
+      }
+      nav.stuck {
+        background: rgba(249, 248, 244, 0.92);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(15, 15, 13, 0.06);
+      }
+      .logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: var(--ink);
+        text-decoration: none;
+        letter-spacing: -0.01em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 42px;
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--gray);
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        position: relative;
+        padding-bottom: 3px;
+        transition: color 0.2s;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--ink);
+        transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .nav-links a:hover { color: var(--ink); }
+      .nav-links a:hover::after { width: 100%; }
+      .nav-yr {
+        font-family: "Syne Mono", monospace;
+        font-size: 0.85rem;
+        color: var(--gray-l);
+      }
+
+      /* Hero */
+      #hero {
+        min-height: 100vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        background: var(--cream);
+      }
+      #hero-canvas { position: absolute; inset: 0; pointer-events: none; }
+      .h-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        pointer-events: none;
+      }
+      .h-blob-1 {
+        width: 620px;
+        height: 620px;
+        top: -120px;
+        right: -100px;
+        background: radial-gradient(ellipse, #b8e0d0 0%, #d0eee4 40%, transparent 72%);
+        opacity: 0.7;
+        animation: bm 14s ease-in-out infinite;
+      }
+      .h-blob-2 {
+        width: 340px;
+        height: 340px;
+        bottom: 60px;
+        left: 8%;
+        background: radial-gradient(ellipse, #a8d5c2bb, transparent 68%);
+        opacity: 0.55;
+        animation: bm2 19s ease-in-out 2s infinite;
+      }
+      @keyframes bm {
+        0%, 100% { border-radius: 50% 42% 60% 50%/42% 50% 58% 48%; transform: rotate(0deg) scale(1); }
+        33% { border-radius: 60% 48% 44% 56%/48% 42% 54% 58%; transform: rotate(3deg) scale(1.04); }
+        66% { border-radius: 44% 58% 52% 42%/56% 52% 44% 50%; transform: rotate(-2deg) scale(0.97); }
+      }
+      @keyframes bm2 {
+        0%, 100% { transform: translate(0, 0); }
+        50% { transform: translate(32px, -28px); }
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        padding: 0 60px 72px;
+        display: flex;
+        flex-direction: column;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        background: var(--ink);
+        color: var(--white);
+        font-family: "Syne Mono", monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 8px 18px;
+        border-radius: 40px;
+        margin-bottom: 36px;
+        align-self: flex-start;
+        opacity: 0;
+        animation: fu 0.6s ease 0.1s forwards;
+      }
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--mint);
+        animation: pulse 2.2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(1.5); }
+      }
+      .hero-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(4rem, 12vw, 9rem);
+        line-height: 0.92;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-bottom: 52px;
+      }
+      .hl { display: block; overflow: hidden; }
+      .hl-i {
+        display: block;
+        transform: translateY(105%);
+        opacity: 0;
+        animation: su 0.95s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .hl:nth-child(1) .hl-i { animation-delay: 0.28s; }
+      .hl:nth-child(2) .hl-i { animation-delay: 0.45s; color: transparent; -webkit-text-stroke: 2px var(--ink); }
+      @keyframes su { to { transform: translateY(0); opacity: 1; } }
+      @keyframes fu { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+      .hero-foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        opacity: 0;
+        animation: fu 0.8s ease 0.75s forwards;
+      }
+      .hero-desc {
+        max-width: 360px;
+        font-size: 1.1rem;
+        line-height: 1.7;
+        color: var(--gray);
+        font-weight: 400;
+      }
+      .hero-tags {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-end;
+      }
+      .htag {
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gray);
+        padding: 6px 16px;
+        border: 1px solid #d8d8d2;
+        border-radius: 30px;
+        transition: border-color 0.2s, color 0.2s, transform 0.25s;
+        font-weight: 500;
+      }
+      .htag:hover {
+        border-color: var(--mint-d);
+        color: var(--mint-d);
+        transform: translateX(-5px);
+      }
+      .scroll-cue {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        opacity: 0;
+        animation: fu 0.6s ease 1.2s forwards;
+      }
+      .sc-txt {
+        font-family: "Syne Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gray-l);
+      }
+      .sc-line {
+        width: 1px;
+        height: 52px;
+        background: linear-gradient(to bottom, var(--gray-l), transparent);
+        animation: scl 2.2s ease-in-out 1.5s infinite;
+      }
+      @keyframes scl {
+        0% { transform: scaleY(0); transform-origin: top; }
+        50% { transform: scaleY(1); transform-origin: top; }
+        51% { transform: scaleY(1); transform-origin: bottom; }
+        100% { transform: scaleY(0); transform-origin: bottom; }
+      }
+
+      /* Marquee */
+      .marquee { padding: 24px 0; background: var(--ink); overflow: hidden; }
+      .mq-track { display: flex; animation: mqs 22s linear infinite; white-space: nowrap; }
+      .mq-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 24px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.6);
+        padding: 0 42px;
+        flex-shrink: 0;
+      }
+      .mq-item em { color: var(--mint); font-style: normal; font-size: 0.9rem; }
+      @keyframes mqs { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+      /* About */
+      #about { padding: 128px 60px; display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; background: var(--offwhite); position: relative; }
+      .sec-label {
+        font-family: "Syne Mono", monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mint-d);
+        margin-bottom: 20px;
+      }
+      .about-h {
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        line-height: 1.2;
+        margin-top: 20px;
+        margin-bottom: 24px;
+      }
+      .photo-wrap { position: relative; width: 100%; padding-bottom: 8px; }
+      .photo-frame {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 4/5;
+        overflow: hidden;
+        border-radius: 4px;
+        background: linear-gradient(145deg, #d0e8de 0%, #c2ddd4 100%);
+      }
+      .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; transition: transform 0.6s; }
+      .photo-wrap:hover .photo-frame img { transform: scale(1.04); }
+      .photo-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        color: var(--mint-d);
+      }
+      .photo-frame.has-img .photo-placeholder { display: none; }
+      .photo-badge {
+        position: absolute;
+        bottom: 18px;
+        left: -14px;
+        z-index: 2;
+        background: var(--ink);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 30px;
+        font-family: "Syne Mono", monospace;
+        font-size: 0.75rem;
+      }
+      .photo-badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--mint);
+        animation: pulse 2.2s ease-in-out infinite;
+      }
+      .about-r p { font-size: 1.1rem; line-height: 1.75; color: var(--gray); font-weight: 400; margin-bottom: 28px; }
+      .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+      .stat-n {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .stat-lbl { font-size: 0.85rem; color: var(--gray-l); margin-top: 8px; font-weight: 500; }
+      .stat-item { padding: 22px 20px; background: var(--white); border: 1px solid #e2e2dc; transition: transform 0.2s; }
+      .stat-item:hover { transform: translateY(-4px); }
+
+      /* Work */
+      #work { padding: 120px 60px; }
+      .sec-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px; }
+      .sec-title { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.1; }
+      .view-all { font-family: "Syne Mono", monospace; font-size: 0.8rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s, gap 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+      .view-all:hover { color: var(--ink); gap: 13px; }
+      .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+      .pcard { position: relative; background: var(--offwhite); transition: transform 0.45s, box-shadow 0.45s; }
+      .pcard:hover { box-shadow: 0 28px 50px rgba(0, 0, 0, 0.1); }
+      .pcard.feat { grid-column: 1/-1; }
+      .cvis { width: 100%; aspect-ratio: 16/9; position: relative; overflow: hidden; background: #ecece6; }
+      .pcard.feat .cvis { aspect-ratio: 21/9; }
+      .cvis-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.65s; }
+      .pcard:hover .cvis-img { transform: scale(1.05); }
+      .cnum {
+        position: absolute;
+        top: 18px;
+        right: 24px;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 4rem;
+        font-weight: 700;
+        color: rgba(0, 0, 0, 0.05);
+        pointer-events: none;
+      }
+      .cvis-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 15, 13, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.35s;
+      }
+      .pcard:hover .cvis-overlay { opacity: 1; }
+      .cvis-overlay-label {
+        font-family: "Syne Mono", monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: white;
+        border: 1px solid rgba(255,255,255,0.5);
+        padding: 10px 24px;
+        border-radius: 40px;
+      }
+      .cinfo { padding: 28px 32px 32px; }
+      .ccat { font-family: "Syne Mono", monospace; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--mint-d); margin-bottom: 10px; font-weight: 500; }
+      .ctitle { font-size: 1.65rem; font-weight: 700; margin-bottom: 12px; }
+      .cdesc { font-size: 1rem; line-height: 1.65; color: var(--gray); font-weight: 400; }
+      .cfoot { margin-top: 22px; padding-top: 18px; border-top: 1px solid #e6e6e2; display: flex; justify-content: space-between; align-items: center; }
+      .ctags { display: flex; gap: 10px; flex-wrap: wrap; }
+      .tag { font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 12px; border: 1px solid #ddd; border-radius: 30px; color: var(--gray); font-weight: 500; }
+      .clnk {
+        width: 38px;
+        height: 38px;
+        border: 1.5px solid var(--ink);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        background: transparent;
+        text-decoration: none;
+      }
+      .clnk svg { width: 16px; height: 16px; transition: transform 0.25s ease; }
+      .clnk svg path { stroke: var(--ink); stroke-width: 2; fill: none; transition: stroke 0.2s; stroke-linecap: round; stroke-linejoin: round; }
+      .clnk:hover { background: var(--ink); transform: rotate(45deg); border-color: var(--ink); }
+      .clnk:hover svg path { stroke: white; }
+
+      /* Services */
+      #services { padding: 120px 60px; background: var(--ink); color: var(--white); }
+      #services .sec-title { color: var(--white); margin-bottom: 60px; }
+      .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); }
+      .svc { background: var(--ink); padding: 52px 42px; position: relative; transition: background 0.3s; }
+      .svc:hover { background: #161614; }
+      .svc-n { font-family: "Cormorant Garamond", serif; font-size: 3.2rem; color: rgba(255,255,255,0.08); margin-bottom: 28px; }
+      .svc-name { font-family: "Cormorant Garamond", serif; font-size: 1.7rem; font-weight: 700; margin-bottom: 16px; }
+      .svc-desc { font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.6); font-weight: 400; }
+      .svc-line { position: absolute; bottom: 0; left: 42px; width: 0; height: 2px; background: var(--mint); transition: width 0.4s; }
+      .svc:hover .svc-line { width: calc(100% - 84px); }
+
+      /* Process */
+      #process { padding: 120px 60px; background: var(--cream); }
+      .proc-grid { margin-top: 60px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+      .proc { padding: 38px 32px; border: 1px solid #e2e2dc; background: var(--white); transition: transform 0.3s, box-shadow 0.3s; }
+      .proc:hover { border-color: var(--mint); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(168,213,194,0.2); }
+      .proc-circle {
+        width: 48px;
+        height: 48px;
+        border: 1.5px solid var(--ink);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Syne Mono", monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      .proc-title { font-size: 1.55rem; font-weight: 700; margin-bottom: 14px; }
+      .proc-desc { font-size: 0.95rem; line-height: 1.7; color: var(--gray); font-weight: 400; }
+
+      /* Testimonials */
+      #testimonials { padding: 120px 60px; }
+      .tgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 60px; }
+      .tcard { padding: 44px 42px; border: 1px solid #e6e6e2; transition: border-color 0.3s, box-shadow 0.3s; background: var(--white); }
+      .tcard:hover { border-color: var(--mint); box-shadow: 0 12px 44px rgba(168,213,194,0.12); }
+      .qm { font-family: "Cormorant Garamond", serif; font-size: 4.5rem; line-height: 0.7; color: var(--mint-pale); display: block; margin-bottom: 20px; }
+      .ttxt { font-family: "Cormorant Garamond", serif; font-size: 1.2rem; font-style: italic; line-height: 1.6; color: var(--gray); margin-bottom: 28px; }
+      .tauth { display: flex; align-items: center; gap: 16px; }
+      .tav { width: 46px; height: 46px; border-radius: 50%; background: var(--mint-pale); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; color: var(--mint-d); }
+      .taname { font-size: 1rem; font-weight: 600; color: var(--ink); }
+      .tarole { font-size: 0.8rem; color: var(--gray-l); margin-top: 4px; }
+
+      /* CTA (preserved from original request) */
+      #contact {
+        padding: 160px 60px;
+        text-align: center;
+        background: var(--offwhite);
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(80px, 14vw, 210px);
+        color: rgba(0, 0, 0, 0.025);
+        white-space: nowrap;
+        pointer-events: none;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+      .cta-lbl {
+        font-family: "Syne Mono", monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--mint-d);
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .cta-title {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 400;
+        font-size: clamp(48px, 7vw, 100px);
+        line-height: 0.96;
+        color: var(--ink);
+        margin-bottom: 28px;
+        position: relative;
+      }
+      .cta-sub {
+        font-size: 1rem;
+        color: var(--gray);
+        font-weight: 400;
+        max-width: 480px;
+        margin: 0 auto 48px;
+        line-height: 1.7;
+        position: relative;
+      }
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 36px;
+        background: var(--ink);
+        color: var(--white);
+        text-decoration: none;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.25s;
+        font-weight: 500;
+      }
+      .cta-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--mint-d);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .cta-btn:hover::before { transform: scaleX(1); }
+      .cta-btn:hover { transform: translateY(-2px); }
+      .cta-btn span, .cta-btn svg { position: relative; z-index: 1; }
+      .cta-btn svg { width: 14px; height: 14px; }
+      .cta-btn svg path { stroke: white; stroke-width: 1.5; fill: none; }
+      .cta-mail {
+        display: block;
+        margin-top: 26px;
+        font-family: "Syne Mono", monospace;
+        font-size: 0.8rem;
+        color: var(--gray-l);
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        position: relative;
+        transition: color 0.2s;
+      }
+      .cta-mail:hover { color: var(--ink); }
+
+      footer {
+        padding: 38px 60px;
+        border-top: 1px solid #e6e6e2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .ft-name { font-family: "Cormorant Garamond", serif; font-size: 1.3rem; font-weight: 700; }
+      .ft-links { display: flex; gap: 24px; }
+      .ft-links a { font-size: 0.8rem; color: var(--gray-l); text-decoration: none; transition: color 0.2s; }
+      .ft-links a:hover { color: var(--ink); }
+      .ft-copy { font-family: "Syne Mono", monospace; font-size: 0.7rem; color: var(--gray-l); }
+
+      /* Reveal animations */
+      .rv { opacity: 0; transform: translateY(38px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+      .rv.on { opacity: 1; transform: translateY(0); }
+      .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+
+      @media (max-width: 900px) {
+        nav { padding: 20px 24px; }
+        .nav-links { display: none; }
+        .hero-inner { padding-left: 24px; padding-right: 24px; padding-bottom: 48px; }
+        .hero-foot { flex-direction: column; gap: 24px; align-items: flex-start; }
+        #about, #work, #services, #process, #testimonials, #contact { padding: 80px 24px; }
+        #about { grid-template-columns: 1fr; gap: 48px; }
+        .grid, .svc-grid, .proc-grid, .tgrid { grid-template-columns: 1fr; }
+        .pcard.feat { grid-column: 1; }
+        .svc-grid { gap: 8px; }
+        footer { padding: 28px 24px; flex-direction: column; gap: 16px; text-align: center; }
+        .ft-links a { margin: 0 12px; }
+        .hero-badge { font-size: 0.7rem; }
+        .hero-desc { font-size: 1rem; }
+        .clnk { width: 34px; height: 34px; }
+        .clnk svg { width: 14px; height: 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cur"></div><div id="cur-txt"></div><div id="cur-ring"></div>
+    <nav id="nav"><a href="#" class="logo">Reniel Medrano</a><ul class="nav-links"><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#process">Process</a></li><li><a href="#contact">Contact</a></li></ul><span class="nav-yr">2026</span></nav>
+
+    <section id="hero"><canvas id="hero-canvas"></canvas><div class="h-blob h-blob-1"></div><div class="h-blob h-blob-2"></div><div class="hero-inner"><div class="hero-badge"><div class="badge-dot"></div>Available for projects</div><h1 class="hero-title"><span class="hl"><span class="hl-i">Creative</span></span><span class="hl"><span class="hl-i">Portfolio.</span></span></h1><div class="hero-foot"><p class="hero-desc">UI/UX designer crafting digital experiences that are intuitive, practical, and visually clear — from web to mobile.</p><div class="hero-tags"><span class="htag">Web Design</span><span class="htag">Funnel Design</span><span class="htag">Mobile App Design</span></div></div></div><div class="scroll-cue"><span class="sc-txt">Scroll</span><div class="sc-line"></div></div></section>
+
+    <div class="marquee"><div class="mq-track"><span class="mq-item">UI Design <em>✦</em></span><span class="mq-item">User Experience <em>✦</em></span><span class="mq-item">Web Design <em>✦</em></span><span class="mq-item">Mobile Apps <em>✦</em></span><span class="mq-item">Figma <em>✦</em></span><span class="mq-item">Funnel Design <em>✦</em></span><span class="mq-item">Prototyping <em>✦</em></span><span class="mq-item">Visual Identity <em>✦</em></span><span class="mq-item">UI Design <em>✦</em></span><span class="mq-item">User Experience <em>✦</em></span><span class="mq-item">Web Design <em>✦</em></span><span class="mq-item">Mobile Apps <em>✦</em></span><span class="mq-item">Figma <em>✦</em></span><span class="mq-item">Funnel Design <em>✦</em></span><span class="mq-item">Prototyping <em>✦</em></span><span class="mq-item">Visual Identity <em>✦</em></span></div></div>
+
+    <section id="about"><div class="about-l rv"><p class="sec-label">About Me</p><div class="photo-wrap"><div class="photo-frame" id="photoFrame"><div class="photo-placeholder"><svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="8" stroke="#6baa92" stroke-width="1.5"/><path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#6baa92" stroke-width="1.5"/></svg><p style="font-size:10px;">Your photo will appear</p></div><img id="profileImg" src="/assets/MEDRANO, RENIEL, C..png" alt="Reniel Medrano" style="display:none"/></div><div class="photo-badge"><div class="photo-badge-dot"></div>UI/UX Designer</div></div></div><div class="about-r rv d2"><h2 class="about-h">Crafting digital experiences that resonate.</h2><p>Hello there, I'm Reniel Medrano — a UI/UX designer and BS Computer Science graduate focused on creating digital experiences that are intuitive, practical, and visually clear. Thank you for taking the time to explore my work.</p><div class="stats"><div class="stat-item"><div class="stat-n">10+</div><div class="stat-lbl">Projects Completed</div></div><div class="stat-item"><div class="stat-n">6</div><div class="stat-lbl">Happy Clients</div></div><div class="stat-item"><div class="stat-n">2yr</div><div class="stat-lbl">Design Experience</div></div></div><div style="margin-top:32px"><p class="sec-label" style="margin-bottom:12px">Tools & Skills</p><div style="display:flex; flex-wrap:wrap; gap:12px"><span class="htag">Figma</span><span class="htag">Prototyping</span><span class="htag">UX Research</span><span class="htag">Mobile UI</span><span class="htag">Web Design</span><span class="htag">Visual Identity</span></div></div><a href="/assets/your-cv.pdf" download style="display:inline-flex; align-items:center; gap:9px; margin-top:36px; font-family:'Syne Mono', monospace; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink);"></a></div></section>
+
+    <section id="work"><div class="sec-head rv"><div><p class="sec-label">Selected Work</p><h2 class="sec-title">Recent Projects</h2></div><a href="#" class="view-all">View all →</a></div><div class="grid"><div class="pcard feat rv" data-tip="View Project"><div class="cnum">01</div><div class="cvis" id="cvis-1"><img class="cvis-img" src="/assets/ravi'splace.png" alt="Ravi's Place" data-cvis="cvis-1"/><div class="cvis-overlay"><div class="cvis-overlay-label">View Project</div></div></div><div class="cinfo"><p class="ccat">Landing Page Design</p><h3 class="ctitle">Ravi's Place — Room renting web at One Tagaytay</h3><p class="cdesc">Full redesign of a room rental brand's web presence, focusing on conversion-optimized flows and refined identity.</p><div class="cfoot"><div class="ctags"><span class="tag">UX Research</span><span class="tag">Figma</span><span class="tag">Prototyping</span></div><a href="#" class="clnk"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></div><div class="pcard rv d1"><div class="cnum">02</div><div class="cvis" id="cvis-2"><img class="cvis-img" src="/assets/eucpaynroll.png" alt="EUC Paynroll" data-cvis="cvis-2"/><div class="cvis-overlay"><div class="cvis-overlay-label">View Project</div></div></div><div class="cinfo"><p class="ccat">Web App Design</p><h3 class="ctitle">EUC Paynroll — University Enrollment System</h3><p class="cdesc">Web app for easy access of tuition and enrollment management.</p><div class="cfoot"><div class="ctags"><span class="tag">UI/UX</span><span class="tag">Web App</span></div><a href="#" class="clnk"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></div><div class="pcard rv d2"><div class="cnum">03</div><div class="cvis" id="cvis-3"><img class="cvis-img" src="/assets/governor's place.png" alt="Condominium Billing" data-cvis="cvis-3"/><div class="cvis-overlay"><div class="cvis-overlay-label">View Project</div></div></div><div class="cinfo"><p class="ccat">Design & Development</p><h3 class="ctitle">Condominium Billing Management — Web-based system</h3><p class="cdesc">Web app for monitoring and paying condominium bills efficiently.</p><div class="cfoot"><div class="ctags"><span class="tag">CRO</span><span class="tag">Dashboard</span></div><a href="#" class="clnk"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></div><div class="pcard rv d3"><div class="cnum">04</div><div class="cvis" id="cvis-4"><img class="cvis-img" src="/assets/luminotes.png" alt="Luminotes" data-cvis="cvis-4"/><div class="cvis-overlay"><div class="cvis-overlay-label">View Project</div></div></div><div class="cinfo"><p class="ccat">Mobile App Design</p><h3 class="ctitle">Luminotes — Energy billing management</h3><p class="cdesc">A mobile app designed to help users easily monitor and manage their energy bills.</p><div class="cfoot"><div class="ctags"><span class="tag">iOS</span><span class="tag">Mobile UI</span></div><a href="#" class="clnk"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></div><div class="pcard rv d1"><div class="cnum">05</div><div class="cvis" id="cvis-5"><img class="cvis-img" src="/assets/web invitation.png" alt="Ravishing Invitation" data-cvis="cvis-5"/><div class="cvis-overlay"><div class="cvis-overlay-label">View Project</div></div></div><div class="cinfo"><p class="ccat">Web invitation design</p><h3 class="ctitle">Ravishing — Modern web-based invitation</h3><p class="cdesc">Tailored for Ravi, playful branding with a very cutesy and modern approach to invitations.</p><div class="cfoot"><div class="ctags"><span class="tag">Interactive</span><span class="tag">Branding</span></div><a href="#" class="clnk"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></div></div></section>
+
+    <section id="services"><p class="sec-label rv">What I Do</p><h2 class="sec-title rv">Services</h2><div class="svc-grid"><div class="svc rv"><div class="svc-n">01</div><div class="svc-name">Web Design</div><p class="svc-desc">Visually compelling, conversion-focused websites built around user behavior and brand storytelling.</p><div class="svc-line"></div></div><div class="svc rv d1"><div class="svc-n">02</div><div class="svc-name">Funnel Design</div><p class="svc-desc">Strategic marketing funnels that guide users from awareness to conversion with precision.</p><div class="svc-line"></div></div><div class="svc rv d2"><div class="svc-n">03</div><div class="svc-name">Mobile App Design</div><p class="svc-desc">Intuitive iOS and Android interfaces that feel native, delight users, and achieve product goals.</p><div class="svc-line"></div></div></div></section>
+
+    <section id="process"><div class="sec-head rv"><div><p class="sec-label">How I Work</p><h2 class="sec-title">My Process</h2></div></div><div class="proc-grid"><div class="proc rv"><div class="proc-circle">1</div><div class="proc-title">Discover</div><p class="proc-desc">Understanding goals & user problems. Research direction, identify objectives, AI-assisted ideation.</p></div><div class="proc rv d1"><div class="proc-circle">2</div><div class="proc-title">Define</div><p class="proc-desc">Structuring ideas, planning UX, mapping workflows with collaborative tools.</p></div><div class="proc rv d2"><div class="proc-circle">3</div><div class="proc-title">Ideate</div><p class="proc-desc">Exploring solutions via wireframes & mockups, refined by continuous feedback.</p></div><div class="proc rv d1"><div class="proc-circle">4</div><div class="proc-title">Design</div><p class="proc-desc">Polished high-fidelity interfaces, visual hierarchy, usability, and AI-enhanced details.</p></div><div class="proc rv d2"><div class="proc-circle">5</div><div class="proc-title">Prototype</div><p class="proc-desc">Interactive prototypes to test navigation flow and usability pre-development.</p></div><div class="proc rv d3"><div class="proc-circle">6</div><div class="proc-title">Test & Refine</div><p class="proc-desc">Usability testing, identifying pain points, refining for seamless experience.</p></div></div></section>
+
+    <section id="testimonials"><div class="sec-head rv"><div><p class="sec-label">Social Proof</p><h2 class="sec-title">What Clients Say</h2></div></div><div class="tgrid"><div class="tcard rv"><span class="qm">"</span><p class="ttxt">He does what was being requested and on time, whenever I request for changes, he happily complies, and his designs are great.</p><div class="tauth"><div class="tav">R</div><div><div class="taname">Robert Torres</div><div class="tarole">Client</div></div></div></div><div class="tcard rv d1"><span class="qm">"</span><p class="ttxt">I love how the designed birthday card turned out to be, very cutesy and simple.</p><div class="tauth"><div class="tav">K</div><div><div class="taname">Kim Torres</div><div class="tarole">Client</div></div></div></div><div class="tcard rv d1"><span class="qm">"</span><p class="ttxt">He’s easy to work and collaborate with, his designs are simple yet pleasing, always happy to design interfaces with him.</p><div class="tauth"><div class="tav">JC</div><div><div class="taname">Joshua Charles</div><div class="tarole">Co-designer</div></div></div></div><div class="tcard rv d2"><span class="qm">"</span><p class="ttxt">The enrollment system Reniel designed cut our support tickets in half. Students could finally navigate it without confusion.</p><div class="tauth"><div class="tav">R</div><div><div class="taname">Ronel</div><div class="tarole">Registrar Staff</div></div></div></div><div class="tcard rv d1"><span class="qm">"</span><p class="ttxt">He designs in a very organized manner and organizes simple details that prove beneficial to the user.</p><div class="tauth"><div class="tav">B</div><div><div class="taname">Bea</div><div class="tarole">Co-designer</div></div></div></div><div class="tcard rv d2"><span class="qm">"</span><p class="ttxt">His designs are great, he collaborates with developers respecting feasibility, always putting system understanding first.</p><div class="tauth"><div class="tav">L</div><div><div class="taname">L jay</div><div class="tarole">Front-end dev</div></div></div></div></div></section>
+
+    <!-- PRESERVED CONTACT SECTION from original version -->
+    <section id="contact">
+      <div class="cta-bg">Let's Talk</div>
+      <p class="cta-lbl rv">Let's Collaborate</p>
+      <h2 class="cta-title rv">Start a Project</h2>
+      <p class="cta-sub rv">Have a vision that needs a designer who cares about craft? Let's make something remarkable together.</p>
+      <a href="mailto:renielmedrano4@gmail.com" class="cta-btn rv"><span>Get in touch</span><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+      <a href="mailto:renielmedrano4@gmail.com" class="cta-mail rv">renielmedrano4@gmail.com</a>
+    </section>
+
+    <footer><div class="ft-name">Reniel Medrano</div><div class="ft-links"><a href="#">Dribbble</a><a href="#">Behance</a><a href="#">LinkedIn</a><a href="#">Twitter</a></div><div class="ft-copy">© 2026 All rights reserved.</div></footer>
+
+    <script>
+      // Cursor
+      const cur = document.getElementById("cur"), curTxt = document.getElementById("cur-txt"), curRing = document.getElementById("cur-ring");
+      let mx = 0, my = 0, fx = 0, fy = 0;
+      document.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; cur.style.left = mx + "px"; cur.style.top = my + "px"; curTxt.style.left = mx + "px"; curTxt.style.top = my + 32 + "px"; });
+      (function af() { fx += (mx - fx) * 0.1; fy += (my - fy) * 0.1; curRing.style.left = fx + "px"; curRing.style.top = fy + "px"; requestAnimationFrame(af); })();
+      document.querySelectorAll("a,button,.pcard,.svc,.tcard,.proc").forEach(el => { el.addEventListener("mouseenter", () => { cur.classList.add("big"); curRing.style.width = "72px"; curRing.style.height = "72px"; if (el.dataset.tip) { curTxt.textContent = el.dataset.tip; curTxt.classList.add("show"); } }); el.addEventListener("mouseleave", () => { cur.classList.remove("big"); curRing.style.width = "38px"; curRing.style.height = "38px"; curTxt.classList.remove("show"); }); });
+      
+      // Canvas particles
+      const canvas = document.getElementById("hero-canvas"), ctx = canvas.getContext("2d");
+      let dots = [];
+      function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; dots = []; for (let x = 38; x < canvas.width; x += 38) for (let y = 38; y < canvas.height; y += 38) dots.push({ x, y, bx: x, by: y, vx: 0, vy: 0 }); }
+      let dmx = -999, dmy = -999;
+      document.addEventListener("mousemove", (e) => { const r = canvas.getBoundingClientRect(); dmx = e.clientX - r.left; dmy = e.clientY - r.top; });
+      function draw() { ctx.clearRect(0, 0, canvas.width, canvas.height); dots.forEach(d => { const dx = d.x - dmx, dy = d.y - dmy, dist = Math.hypot(dx, dy), force = Math.max(0, 90 - dist) / 90, ang = Math.atan2(dy, dx); d.vx += Math.cos(ang) * force * 0.5; d.vy += Math.sin(ang) * force * 0.5; d.vx += (d.bx - d.x) * 0.08; d.vy += (d.by - d.y) * 0.08; d.vx *= 0.8; d.vy *= 0.8; d.x += d.vx; d.y += d.vy; ctx.beginPath(); ctx.arc(d.x, d.y, 1.4 + force * 2.8, 0, Math.PI * 2); ctx.fillStyle = `rgba(90,154,128,${0.13 + force * 0.55})`; ctx.fill(); }); requestAnimationFrame(draw); }
+      resizeCanvas(); window.addEventListener("resize", resizeCanvas); draw();
+      
+      // Nav and reveals
+      const nav = document.getElementById("nav");
+      window.addEventListener("scroll", () => nav.classList.toggle("stuck", scrollY > 60));
+      const ro = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); ro.unobserve(e.target); } }); }, { threshold: 0.1 });
+      document.querySelectorAll(".rv").forEach(el => ro.observe(el));
+      document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener("click", e => { const t = document.querySelector(a.getAttribute("href")); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: "smooth" }); } }); });
+      
+      // Profile image
+      const profileImg = document.getElementById("profileImg"), frame = document.getElementById("photoFrame");
+      function tryShowProfile() { if (profileImg.src && !profileImg.src.endsWith("/") && profileImg.src !== window.location.href) { profileImg.style.display = "block"; frame.classList.add("has-img"); } }
+      profileImg.addEventListener("load", () => { profileImg.style.display = "block"; frame.classList.add("has-img"); });
+      profileImg.addEventListener("error", () => { profileImg.style.display = "none"; frame.classList.remove("has-img"); });
+      tryShowProfile();
+      
+      document.querySelectorAll(".cvis-img").forEach(img => { const wrap = document.getElementById(img.dataset.cvis); if (wrap) { img.addEventListener("load", () => wrap.classList.add("has-img")); img.addEventListener("error", () => wrap.classList.remove("has-img")); if (img.complete && img.naturalWidth !== 0) wrap.classList.add("has-img"); } });
+      
+      const b1 = document.querySelector(".h-blob-1"), b2 = document.querySelector(".h-blob-2");
+      window.addEventListener("scroll", () => { const y = scrollY; if (b1) b1.style.transform = `translateY(${y * 0.14}px)`; if (b2) b2.style.transform = `translateY(${y * 0.07}px)`; });
+    </script>
+  </body>
+</html>
