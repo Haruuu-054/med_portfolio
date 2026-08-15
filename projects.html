@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All projects · Reniel Medrano</title>
+  <style>
+    /* ----- neumorphism reset & base (mirror of main) ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #e0e5ec;
+      --bg-light: #f0f4fa;
+      --shadow-light: #ffffff;
+      --shadow-dark: #b8bcc8;
+      --primary: #5b7a9a;
+      --primary-dark: #3d5a78;
+      --text: #2d3a4a;
+      --text-muted: #5b6f82;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 40px;
+      --neumo-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
+      --neumo-shadow-inset: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
+      --neumo-shadow-small: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
+      --neumo-shadow-hover: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+      --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      padding: 20px;
+      scroll-behavior: smooth;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    h2 { font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
+
+    .wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ----- neumorphic cards ----- */
+    .neu-card {
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--neumo-shadow);
+      transition: var(--transition);
+    }
+    .neu-card:hover { box-shadow: var(--neumo-shadow-hover); }
+
+    .neu-pill {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--neumo-shadow-small);
+      transition: var(--transition);
+    }
+    .neu-pill:hover { box-shadow: var(--neumo-shadow); }
+
+    /* ----- navbar ----- */
+    .navbar-shell { padding: 0 0 20px 0; }
+    .navbar {
+      max-width: 1160px;
+      margin: 0 auto;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--neumo-shadow);
+      transition: var(--transition);
+    }
+    .navbar:hover { box-shadow: var(--neumo-shadow-hover); }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: var(--transition);
+    }
+    .brand:hover { transform: scale(1.02); }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg);
+      box-shadow: var(--neumo-shadow-small);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-icon svg { width: 24px; height: 24px; display: block; }
+
+    .brand-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--bg);
+      box-shadow: var(--neumo-shadow-small);
+    }
+
+    .nav-cta {
+      padding: 10px 26px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: var(--neumo-shadow-small);
+      font-weight: 700;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    .nav-cta:hover {
+      box-shadow: var(--neumo-shadow);
+      transform: translateY(-2px);
+      color: var(--primary-dark);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--bg);
+      box-shadow: var(--neumo-shadow-small);
+      font-size: 1.2rem;
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .nav-toggle:hover { box-shadow: var(--neumo-shadow); }
+
+    /* ----- projects page specific ----- */
+    .projects-page {
+      max-width: 1160px;
+      margin: 0 auto;
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--neumo-shadow);
+      padding: 44px 44px 48px;
+      transition: var(--transition);
+    }
+    .projects-page:hover { box-shadow: var(--neumo-shadow-hover); }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      position: relative;
+      display: inline-block;
+    }
+    .page-header h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 4px;
+      opacity: 0.4;
+    }
+
+    .back-link {
+      padding: 10px 24px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: var(--neumo-shadow-small);
+      font-weight: 600;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    .back-link:hover {
+      box-shadow: var(--neumo-shadow);
+      transform: translateY(-2px);
+      color: var(--primary-dark);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ----- clickable project card ----- */
+    .project-card-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .project-card-link:hover {
+      transform: translateY(-6px);
+    }
+
+    .project-card {
+      background: var(--bg);
+      border-radius: var(--radius-md);
+      box-shadow: var(--neumo-shadow);
+      overflow: hidden;
+      transition: var(--transition);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      box-shadow: var(--neumo-shadow-hover);
+    }
+
+    .project-thumb {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg-light);
+      flex-shrink: 0;
+    }
+    .project-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .project-card-link:hover .project-thumb img {
+      transform: scale(1.05);
+    }
+
+    .project-body {
+      padding: 20px 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-body h3 {
+      font-size: 1.02rem;
+      color: var(--text);
+      margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+    .project-card-link:hover .project-body h3 {
+      color: var(--primary-dark);
+    }
+    .project-body p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .case-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 14px;
+    }
+    .case-meta span {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--neumo-shadow-small);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 14px;
+    }
+
+    .case-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: var(--neumo-shadow-small);
+      transition: var(--transition);
+      border: none;
+      align-self: flex-start;
+      margin-top: auto;
+      pointer-events: none; /* 👈 Prevents button from intercepting clicks */
+    }
+    .case-toggle .arrow {
+      transition: transform 0.3s;
+      display: inline-block;
+      font-size: 1.1rem;
+    }
+
+    /* External link indicator */
+    .external-link-icon {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 0.75rem;
+    }
+
+    /* ----- footer ----- */
+    footer {
+      margin-top: 50px;
+      background: var(--bg);
+      color: var(--text-muted);
+      padding: 50px 20px 24px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      box-shadow: var(--neumo-shadow);
+    }
+    .footer-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 36px;
+      padding-bottom: 36px;
+      border-bottom: 2px solid var(--bg-light);
+    }
+    .footer-brand h4 { color: var(--text); font-size: 1.1rem; }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-top: 14px;
+      max-width: 32ch;
+    }
+    .footer-col h4 {
+      color: var(--text);
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-col a {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      transition: color 0.2s;
+      padding: 4px 0;
+    }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom {
+      max-width: 1160px;
+      margin: 22px auto 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* ----- responsive ----- */
+    @media (max-width: 900px) {
+      .project-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .projects-page { padding: 28px 20px; }
+    }
+    @media (max-width: 680px) {
+      body { padding: 12px; }
+      .nav-links {
+        position: absolute;
+        top: 74px;
+        left: 20px;
+        right: 20px;
+        background: var(--bg);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        border-radius: var(--radius-md);
+        display: none;
+        gap: 12px;
+        box-shadow: var(--neumo-shadow-hover);
+        z-index: 20;
+      }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .nav-cta { display: none; }
+      .nav-links .nav-cta-mobile {
+        display: block;
+        padding: 12px;
+        border-radius: var(--radius-sm);
+        background: var(--bg);
+        box-shadow: var(--neumo-shadow-small);
+        font-weight: 700;
+        text-align: center;
+        color: var(--primary);
+      }
+      .project-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .page-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar-shell">
+    <nav class="navbar">
+      <a href="index.html" class="brand" aria-label="Home">
+        <img
+          src="/assets/logo.png"
+          alt="Logo"
+          style="height: 40px; width: auto"
+        />
+        <span class="brand-name">Reniel Medrano</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#process">Process</a></li>
+        <li><a href="index.html#contact" class="nav-cta-mobile">Contact</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Contact me</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        ☰
+      </button>
+    </nav>
+  </div>
+
+  <!-- PROJECTS PAGE -->
+  <section class="projects-page">
+    <div class="page-header">
+      <h1>All projects</h1>
+      <a href="index.html" class="back-link">← Back to home</a>
+    </div>
+
+    <div class="project-grid" id="projectGrid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>Reniel Medrano</h4>
+        <p>Designing digital products that are simple, useful, and human — one screen at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html#work">Work</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#process">Process</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="mailto:renielmedrano4@gmail.com">Email</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Dribbble</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Say hello</h4>
+        <ul>
+          <li><a href="index.html#contact">Start a project</a></li>
+          <li><a href="mailto:renielmedrano4@gmail.com">renielmedrano4@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Reniel Medrano. All rights reserved.</span>
+      <span>Built with care in the Philippines</span>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // ---- year ----
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // ---- mobile nav toggle ----
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (navToggle) {
+        navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+        document.querySelectorAll('.nav-links a').forEach(a => {
+          a.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+      }
+
+      // ---- Helper: Check if link is external ----
+      function isExternalLink(url) {
+        if (!url || url === '#') return false;
+        return url.startsWith('http://') || url.startsWith('https://');
+      }
+
+      // ---- ALL PROJECTS DATA with links ----
+      const PROJECTS = [
+        {
+          title: 'LumiNotes — Energy Billing App',
+          category: 'Hackathon · 1st Place',
+          thumbImage: '/assets/luminotes.png',
+          summary: 'A mobile app designed to help users easily monitor and manage their energy bills.',
+          problem: 'PLACEHOLDER: What was the core problem LumiNotes solved? (e.g. who struggles with reading energy bills, and why).',
+          decisions: [
+            'PLACEHOLDER: A key UI or flow decision you made and the reasoning behind it',
+            'PLACEHOLDER: A trade-off you weighed (e.g. simplicity vs. data depth)',
+            'PLACEHOLDER: How you validated the direction with judges or users'
+          ],
+          outcome: 'Won 1st place at the university hackathon.',
+          isPlaceholder: true,
+          tags: ['Mobile', 'Hackathon', 'Energy'],
+          link: 'https://www.figma.com/proto/qcHjEcbE2DixqXUpmrPbLL/The-Figma-Fuelled-Galactic-Overlord-Pixies-Interface-Battalion?node-id=450-6590&t=AFPBaTsNjXYFJ8i1-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=450%3A6590'
+        },
+        {
+          title: 'EUC Paynroll — Enrollment & Tuition Portal',
+          category: 'Web Design and Development',
+          thumbImage: '/assets/eucpaynroll.png',
+          summary: 'Web app for easy access of tuition and enrollment management.',
+          problem: 'PLACEHOLDER: What is the problem with the current enrollment and tuition payment process, and who is affected by it.',
+          decisions: [
+            'PLACEHOLDER: What changes you made to the user flow or interface to address the problem',
+            'PLACEHOLDER: How efficiently users can complete their tasks compared to the previous system'
+          ],
+          outcome: 'PLACEHOLDER: The idea of the prototype has been applied and modified by the university for their current enrollment and tuition payment system.',
+          isPlaceholder: true,
+          tags: ['Web', 'Self-initiated', 'Government service'],
+          link: 'https://eucpaynroll.ccsdepartment.com/admission_registrar/login.html'
+        },
+        {
+          title: 'Condominium Billing Management System',
+          category: 'Web design and Development',
+          thumbImage: '/assets/governor\'s place.png',
+          summary: 'Web app for monitoring and paying condominium bills efficiently.',
+          problem: 'Stakeholders and tenants needed a more efficient way to manage and pay condominium bills, as the existing process was cumbersome and time-consuming.',
+          decisions: [
+            'Designed a clean and intuitive dashboard interface to provide users with a clear overview of their billing information and payment history.',
+            'Tested payment flows with users to ensure a smooth and secure transaction process, reducing errors and increasing user confidence.'
+          ],
+          outcome: 'PLACEHOLDER: Approved Demo for the billing management system.',
+          isPlaceholder: true,
+          tags: ['Dashboard', 'Healthcare', 'Figma'],
+          link: 'https://governor-s-place.web.app/index.html'
+        },
+        {
+          title: "Ravi's Place at One Tagaytay",
+          category: 'Brand & Web Design',
+          thumbImage: '/assets/ravisplace.png',
+          summary: 'A refined digital presence for a premium staycation destination in Tagaytay.',
+          problem: 'PLACEHOLDER: The existing booking experience was fragmented, and the brand lacked a cohesive visual identity.',
+          decisions: [
+            'PLACEHOLDER: Designed a warm, earthy visual language that reflects the Tagaytay ambiance',
+            'PLACEHOLDER: Streamlined the booking flow to reduce friction and increase conversions'
+          ],
+          outcome: 'PLACEHOLDER: Increased booking inquiries by 30% within the first month.',
+          isPlaceholder: true,
+          tags: ['Branding', 'Booking', 'Responsive'],
+          link: 'https://www.figma.com/proto/XNmn6PEFD0nRFnMZrh0Dy6/personal-projects---portfolio?node-id=248-1268&viewport=-2535%2C-2178%2C0.28&t=2B6ybHUgostsidx1-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=146%3A1913&show-proto-sidebar=1&page-id=146%3A1255'
+        },
+        {
+          title: 'Ravishing Birthday Invitation',
+          category: 'Front-end · Freelance',
+          thumbImage: '/assets/web invitation.png',
+          summary: 'A custom, visually rich birthday invitation website delivered for a private client.',
+          problem: 'PLACEHOLDER: The client needed a unique digital invitation that stood out from generic e-cards.',
+          decisions: [
+            'PLACEHOLDER: Used bold typography and animated confetti to create a celebratory feel',
+            'PLACEHOLDER: Optimized for mobile and ensured smooth RSVP flow'
+          ],
+          outcome: 'PLACEHOLDER: Delivered within 2 weeks, client loved the interactive experience.',
+          isPlaceholder: true,
+          tags: ['Front-end', 'Animation', 'Client work'],
+          link: 'https://www.figma.com/design/XNmn6PEFD0nRFnMZrh0Dy6/personal-projects---portfolio?node-id=569-5762&t=RDTkXCmxvSFMhyEC-1'
+        },
+        {
+          title: 'Astra Fitness Landing Page',
+          category: 'Product Design',
+          thumbImage: '/assets/astrafit.png',
+          summary: 'High-converting landing page for a gym fitness brand.',
+          problem: 'PLACEHOLDER: The brand needed a sleek, energetic landing page to capture leads and showcase class offerings.',
+          decisions: [
+            'PLACEHOLDER: Used high-energy imagery and a bold colour palette to reflect the brand\'s intensity',
+            'PLACEHOLDER: Clear CTAs and social proof sections to build trust'
+          ],
+          outcome: 'PLACEHOLDER: Increased sign-ups by 25% after launch.',
+          isPlaceholder: true,
+          tags: ['Landing page', 'Fitness', 'Conversion'],
+          link: 'https://www.figma.com/proto/PMsZU0Muek0STsHd4VUTms/astra-fitness?node-id=2203-3602&viewport=150%2C172%2C0.23&t=yfOvOpiFpPR9ePRe-1&scaling=scale-down&content-scaling=fixed&page-id=7%3A5'
+        }
+      ];
+
+      function renderProjects() {
+        const grid = document.getElementById('projectGrid');
+        if (!grid) return;
+
+        grid.innerHTML = PROJECTS.map((p, i) => {
+          const isExternal = isExternalLink(p.link);
+          const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+          const externalIcon = isExternal ? ' <span class="external-link-icon">↗</span>' : '';
+
+          return `
+            <a href="${p.link || '#'}" class="project-card-link" data-index="${i}"${targetAttr}>
+              <article class="project-card" data-index="${i}">
+                <div class="project-thumb">
+                  <img 
+                    src="${p.thumbImage}" 
+                    alt="${p.title}"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML = '<div style=\\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:var(--text-muted);font-size:0.9rem;\\'>No image available</div>';"
+                  />
+                </div>
+                <div class="project-body">
+                  <h3>${p.title}${externalIcon}</h3>
+                  <p>${p.summary}</p>
+                  <div class="case-meta">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+                  <span class="case-toggle">
+                    <span class="label">View case study</span>
+                    <span class="arrow">→</span>
+                  </span>
+                </div>
+              </article>
+            </a>
+          `;
+        }).join('');
+      }
+
+      renderProjects();
+
+      // ---- scroll reveal (subtle) ----
+      const targets = document.querySelectorAll('.project-card-link');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      targets.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(18px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        io.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
