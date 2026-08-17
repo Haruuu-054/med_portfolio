@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EUC PayNRoll — Case Study — Reniel Medrano</title>
+<meta name="description" content="How EUC PayNRoll simplifies enrollment, student records, and transaction management through a structured web application designed for clearer and more efficient academic administration.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+<div class="rail" aria-hidden="true">
+  <span class="rail__mark">RM / CASE STUDY 03 / EUC PAYNROLL</span>
+  <span class="rail__dot"></span>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav__row">
+      <a href="index.html" class="nav__name">Reniel Medrano<span>.</span></a>
+
+      <div class="nav__links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+
+      <a href="resume.pdf" class="nav__cta" download>Resume ↓</a>
+
+      <button class="nav__toggle" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 6h18M3 12h18M3 18h18"
+                stroke="#14161B"
+                stroke-width="1.6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" aria-hidden="true">
+  <button class="mobile-nav__close" aria-label="Close menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M6 6l12 12M18 6L6 18"
+            stroke="#14161B"
+            stroke-width="1.6"/>
+    </svg>
+  </button>
+
+  <div class="mobile-nav__links">
+    <a href="index.html#work">Work</a>
+    <a href="index.html#process">Process</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <header class="cs-hero">
+    <div class="wrap">
+
+      <a href="index.html#work" class="cs-back">← Back to work</a>
+
+      <span class="eyebrow">
+        Case Study 03 · Education · Web Application
+      </span>
+
+      <h1 class="cs-hero__title">
+        EUC PayNRoll
+      </h1>
+
+      <p class="cs-hero__problem">
+        Designing and developing a centralized web application that simplifies
+        enrollment, student records, and transaction management for the
+        university's Registrar's Office.
+      </p>
+
+      <dl class="cs-overview">
+
+        <div class="cs-overview__cell">
+          <dt>Role</dt>
+          <dd>UI/UX Designer &amp; Developer</dd>
+        </div>
+
+        <div class="cs-overview__cell">
+          <dt>Team</dt>
+          <dd>Individual Project</dd>
+        </div>
+
+        <div class="cs-overview__cell">
+          <dt>Platform</dt>
+          <dd>Responsive Web Application</dd>
+        </div>
+
+        <div class="cs-overview__cell">
+          <dt>Tools</dt>
+          <dd>Figma · HTML · CSS · JavaScript</dd>
+        </div>
+
+      </dl>
+
+    </div>
+  </header>
+
+
+  <!-- PROBLEM -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">01</span>
+
+      <h2 class="cs-section__title">
+        The problem
+      </h2>
+
+      <p class="cs-section__lede">
+        Enrollment and academic transaction processes can become difficult to
+        manage when information is spread across different steps, records,
+        and administrative tasks. The Registrar's Office needed a more
+        centralized digital experience for managing student information,
+        enrollment activities, and related transactions.
+      </p>
+
+      <p class="cs-section__lede">
+        The challenge was to create a web application that could organize
+        these processes without making the experience feel overwhelming.
+        Students and administrative users needed clear access to the
+        information and actions relevant to their respective workflows.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- USERS -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">02</span>
+
+      <h2 class="cs-section__title">
+        Who it's for
+      </h2>
+
+      <div class="cs-two-col">
+
+        <div class="user-card reveal">
+
+          <span class="user-card__role">
+            Primary
+          </span>
+
+          <h4>
+            The registrar / administrator
+          </h4>
+
+          <ul>
+            <li>
+              Needs centralized access to student academic records
+            </li>
+
+            <li>
+              Manages enrollment and transaction-related information
+            </li>
+
+            <li>
+              Needs an organized interface for completing administrative tasks
+            </li>
+          </ul>
+
+        </div>
+
+
+        <div class="user-card reveal">
+
+          <span class="user-card__role">
+            Secondary
+          </span>
+
+          <h4>
+            The student
+          </h4>
+
+          <ul>
+            <li>
+              Needs a clear way to understand enrollment-related information
+            </li>
+
+            <li>
+              Wants easier access to academic and transaction records
+            </li>
+
+            <li>
+              Needs confidence that submitted information is properly recorded
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GOALS -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">03</span>
+
+      <h2 class="cs-section__title">
+        Goals
+      </h2>
+
+      <p class="cs-section__lede">
+        The goal was not only to digitize existing processes, but to make the
+        overall experience more structured, understandable, and efficient
+        for the people using the system.
+      </p>
+
+      <div class="flow reveal">
+
+        <div class="flow__step">
+          Centralize information
+        </div>
+
+        <span class="flow__arrow">→</span>
+
+        <div class="flow__step">
+          Simplify workflows
+        </div>
+
+        <span class="flow__arrow">→</span>
+
+        <div class="flow__step">
+          Improve management
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESEARCH / INSIGHTS -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">04</span>
+
+      <h2 class="cs-section__title">
+        Research &amp; insights
+      </h2>
+
+      <p class="cs-section__lede">
+        Research focused on understanding enrollment workflows, registrar
+        requirements, student record management, and how information
+        architecture could reduce friction across administrative processes.
+      </p>
+
+
+      <div class="insight reveal">
+
+        <div class="insight__row">
+
+          <div class="insight__label">
+            Finding
+          </div>
+
+          <div class="insight__text">
+            Enrollment and student administration involve multiple pieces of
+            information that need to be accessed and updated throughout the
+            process.
+          </div>
+
+        </div>
+
+
+        <div class="insight__row">
+
+          <div class="insight__label">
+            Implication
+          </div>
+
+          <div class="insight__text">
+            Users need a clear overview of important records, statuses, and
+            actions without having to navigate through unnecessary screens.
+          </div>
+
+        </div>
+
+
+        <div class="insight__row">
+
+          <div class="insight__label">
+            Action
+          </div>
+
+          <div class="insight__text">
+            Organized the experience around centralized information,
+            task-oriented navigation, and clearly grouped administrative
+            functions.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="insight reveal">
+
+        <div class="insight__row">
+
+          <div class="insight__label">
+            Finding
+          </div>
+
+          <div class="insight__text">
+            Administrative interfaces can become difficult to scan when
+            student records and transaction information are presented without
+            a strong visual hierarchy.
+          </div>
+
+        </div>
+
+
+        <div class="insight__row">
+
+          <div class="insight__label">
+            Implication
+          </div>
+
+          <div class="insight__text">
+            Frequently accessed information and primary actions should be
+            visually prioritized.
+          </div>
+
+        </div>
+
+
+        <div class="insight__row">
+
+          <div class="insight__label">
+            Action
+          </div>
+
+          <div class="insight__text">
+            Used structured layouts, grouped content, and consistent interface
+            patterns to make important information easier to scan.
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- IA + USER FLOW -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">05</span>
+
+      <h2 class="cs-section__title">
+        Structure &amp; flow
+      </h2>
+
+      <p class="cs-section__lede">
+        The application was structured around the core administrative
+        workflows of the Registrar's Office. Instead of treating every
+        feature as an isolated screen, the experience connects related
+        information and actions into a more predictable workflow.
+      </p>
+
+
+      <div class="flow reveal" style="margin-bottom:36px;">
+
+        <div class="flow__step">
+          Login / Access
+        </div>
+
+        <span class="flow__arrow">→</span>
+
+        <div class="flow__step">
+          Dashboard / Overview
+        </div>
+
+        <span class="flow__arrow">→</span>
+
+        <div class="flow__step">
+          Student Records
+        </div>
+
+        <span class="flow__arrow">→</span>
+
+        <div class="flow__step">
+          Transactions / Actions
+        </div>
+
+      </div>
+
+
+      <p class="cs-section__lede" style="margin-bottom:0;">
+        The information architecture was designed around the user's primary
+        tasks. Each area of the system supports a specific administrative
+        need while maintaining a consistent navigation structure across the
+        application.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- DESIGN EXPLORATION -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">06</span>
+
+      <h2 class="cs-section__title">
+        Design exploration
+      </h2>
+
+      <p class="cs-section__lede">
+        The visual direction explored how to present an administrative
+        platform with a large amount of information without making the
+        interface feel unnecessarily complex. The final direction prioritized
+        hierarchy, readability, and clear access to important actions.
+      </p>
+
+
+      <div class="ba reveal">
+
+        <div class="ba__panel ba__panel--before">
+
+          <span class="ba__tag">
+            Option A — Rejected
+          </span>
+
+          <p>
+            A dense dashboard that exposed too much information at once.
+            Although functional, the layout made it difficult to determine
+            which information and actions should receive immediate attention.
+          </p>
+
+        </div>
+
+
+        <div class="ba__panel ba__panel--after">
+
+          <span class="ba__tag">
+            Option B — Selected
+          </span>
+
+          <p>
+            A structured administrative interface that prioritizes essential
+            information, separates major tasks, and uses consistent visual
+            patterns throughout the application.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- DESIGN DECISIONS -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">07</span>
+
+      <h2 class="cs-section__title">
+        Key design decisions
+      </h2>
+
+
+      <div class="decision-list">
+
+
+        <div class="decision reveal">
+
+          <div class="decision__topic">
+            Tasks before complexity
+          </div>
+
+          <div class="decision__why">
+            The interface prioritizes the actions administrative users need
+            to complete instead of presenting every available function at
+            the same visual level.
+          </div>
+
+        </div>
+
+
+        <div class="decision reveal">
+
+          <div class="decision__topic">
+            Hierarchy, not information overload
+          </div>
+
+          <div class="decision__why">
+            Student records, transaction information, and important system
+            states are grouped and prioritized so users can quickly identify
+            what matters.
+          </div>
+
+        </div>
+
+
+        <div class="decision reveal">
+
+          <div class="decision__topic">
+            Consistency across workflows
+          </div>
+
+          <div class="decision__why">
+            Consistent layouts, spacing, navigation patterns, and interface
+            components help users build familiarity as they move between
+            different areas of the application.
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- LIVE WEB APPLICATION -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">08</span>
+
+      <h2 class="cs-section__title">
+        Live web application
+      </h2>
+
+      <p class="cs-section__lede">
+        EUC PayNRoll was implemented as a functional web application,
+        translating the interface, information architecture, and user flows
+        into a working digital platform for academic administration.
+      </p>
+
+
+      <div class="mock-frame reveal">
+
+        <div class="mock-frame__bar">
+
+          <span class="mock-frame__dot"></span>
+          <span class="mock-frame__dot"></span>
+          <span class="mock-frame__dot"></span>
+
+          <span class="mock-frame__label">
+            EUC PayNRoll — Live Web Application
+          </span>
+
+        </div>
+
+
+        <div class="mock-frame__body" style="padding:0;">
+
+          <iframe
+            style="border:none;width:100%;height:540px;display:block;"
+            src="https://eucpaynroll.ccsdepartment.com/admission_registrar/login.html"
+            allowfullscreen
+            loading="lazy"
+            title="EUC PayNRoll live web application">
+          </iframe>
+
+        </div>
+
+      </div>
+
+
+      <p class="mock-caption reveal">
+
+        Explore the live EUC PayNRoll application above, or
+
+        <a
+          href="https://eucpaynroll.ccsdepartment.com/admission_registrar/login.html"
+          target="_blank"
+          rel="noopener"
+          style="color:var(--blueprint);"
+        >
+          open it directly →
+        </a>
+
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- DESIGN SYSTEM -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">09</span>
+
+      <h2 class="cs-section__title">
+        Design system basics
+      </h2>
+
+      <p class="cs-section__lede">
+        A focused visual system built around the university's established
+        visual identity, using strong red, neutral surfaces, and restrained
+        accent colors to maintain hierarchy across the application.
+      </p>
+
+
+      <div class="dsys reveal" style="margin-bottom:28px;">
+
+        <div
+          class="dsys__swatch"
+          style="background:#8F0000;"
+        >
+          <span>Primary Red</span>
+        </div>
+
+        <div
+          class="dsys__swatch"
+          style="background:#FFFFFF;"
+        >
+          <span>White</span>
+        </div>
+
+        <div
+          class="dsys__swatch"
+          style="background:#14161B;"
+        >
+          <span>Dark</span>
+        </div>
+
+        <div
+          class="dsys__swatch"
+          style="background:#F5F5F5;"
+        >
+          <span>Light Gray</span>
+        </div>
+
+        <div
+          class="dsys__swatch"
+          style="background:#D9D9D9;"
+        >
+          <span>Border</span>
+        </div>
+
+        <div
+          class="dsys__swatch"
+          style="background:#D4A900;"
+        >
+          <span>Accent</span>
+        </div>
+
+      </div>
+
+
+      <div class="comp-row reveal">
+
+        <button class="dsys-btn dsys-btn--filled">
+          View Records
+        </button>
+
+        <button class="dsys-btn">
+          Manage Transactions
+        </button>
+
+        <input
+          class="dsys-input"
+          placeholder="Search student records"
+          disabled
+        >
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OUTCOME -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">10</span>
+
+      <h2 class="cs-section__title">
+        Outcome
+      </h2>
+
+      <p class="cs-section__lede">
+        EUC PayNRoll evolved from a UX/UI concept into a functional web
+        application, demonstrating the ability to translate user flows,
+        information architecture, and interface decisions into an
+        implemented digital product.
+      </p>
+
+      <p class="outcome-note">
+        The project demonstrates end-to-end product thinking across interface
+        design and implementation, including responsive layouts, structured
+        navigation, administrative workflows, and functional web development.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- REFLECTION -->
+  <section class="cs-section">
+
+    <div class="wrap">
+
+      <span class="cs-section__num">11</span>
+
+      <h2 class="cs-section__title">
+        Reflection
+      </h2>
+
+
+      <div class="reflect reveal">
+
+
+        <div class="reflect__col">
+
+          <h4>
+            What I learned
+          </h4>
+
+          <p>
+            Designing and implementing EUC PayNRoll reinforced how important
+            information architecture becomes when working with complex
+            systems. Good UI is not only about how individual screens look,
+            but also about how users move between tasks and understand the
+            information presented to them.
+          </p>
+
+        </div>
+
+
+        <div class="reflect__col">
+
+          <h4>
+            What I'd improve
+          </h4>
+
+          <p>
+            Given more time, I would conduct usability testing with
+            administrative and student users to identify workflow friction,
+            validate navigation patterns, and better understand which
+            information users need most frequently.
+          </p>
+
+        </div>
+
+
+        <div class="reflect__col">
+
+          <h4>
+            What I'd do next
+          </h4>
+
+          <p>
+            I would next refine the administrative dashboard, expand
+            interaction states, improve responsive behavior across
+            breakpoints, and continue validating the end-to-end enrollment
+            and transaction workflows with real users.
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- NEXT PROJECT -->
+  <div class="wrap">
+
+    <div class="next-project reveal">
+
+      <div>
+
+        <div class="next-project__label">
+          Next case study
+        </div>
+
+        <div class="next-project__name">
+          Astra Fitness — coming soon
+        </div>
+
+      </div>
+
+      <a
+        href="index.html#work"
+        class="btn btn--ghost"
+      >
+        All work →
+      </a>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="wrap">
+
+    <div class="footer__row">
+
+      <span>
+        © <span data-year>2026</span> Reniel Medrano
+      </span>
+
+      <div class="footer__links">
+
+        <a href="mailto:hello@renielmedrano.com">
+          Email
+        </a>
+
+        <a
+          href="https://linkedin.com/in/renielmedrano"
+          target="_blank"
+          rel="noopener"
+        >
+          LinkedIn
+        </a>
+
+        <a
+          href="https://github.com/renielmedrano"
+          target="_blank"
+          rel="noopener"
+        >
+          GitHub
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

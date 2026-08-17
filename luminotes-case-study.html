@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumiNotes — Case Study — Reniel Medrano</title>
+<meta name="description" content="How LumiNotes turned confusing electricity bills into a system households can actually read, budget against, and act on before the due date.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="case-study.css">
+</head>
+<body>
+
+<div class="rail" aria-hidden="true">
+  <span class="rail__mark">RM / CASE STUDY 01 / LUMINOTES</span>
+  <span class="rail__dot"></span>
+</div>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav__row">
+      <a href="index.html" class="nav__name">Reniel Medrano<span>.</span></a>
+      <div class="nav__links">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#process">Process</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <a href="resume.pdf" class="nav__cta" download>Resume ↓</a>
+      <button class="nav__toggle" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="#14161B" stroke-width="1.6"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-nav" aria-hidden="true">
+  <button class="mobile-nav__close" aria-label="Close menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#14161B" stroke-width="1.6"/></svg>
+  </button>
+  <div class="mobile-nav__links">
+    <a href="index.html#work">Work</a>
+    <a href="index.html#process">Process</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</div>
+
+<main>
+
+  <header class="cs-hero">
+    <div class="wrap">
+      <a href="index.html#work" class="cs-back">← Back to work</a>
+      <span class="eyebrow">Case Study 01 · Energy Billing · Mobile App</span>
+      <h1 class="cs-hero__title">LumiNotes</h1>
+      <p class="cs-hero__problem">Designing a clearer way for households to understand their electricity bill, track usage against a budget, and catch problems before the due date — built in a 24-hour university hackathon.</p>
+
+      <dl class="cs-overview">
+        <div class="cs-overview__cell"><dt>Role</dt><dd>UI/UX Designer</dd></div>
+        <div class="cs-overview__cell"><dt>Team</dt><dd>4, cross-functional</dd></div>
+        <div class="cs-overview__cell"><dt>Platform</dt><dd>Mobile App</dd></div>
+        <div class="cs-overview__cell"><dt>Tools</dt><dd>Figma · FigJam</dd></div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- PROBLEM -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">01</span>
+      <h2 class="cs-section__title">The problem</h2>
+      <p class="cs-section__lede">Electricity bills in most households arrive as a single confusing total — a peso amount and a due date, with the actual usage breakdown buried in fine print or missing entirely. People can't tell what drove the bill up until it's already too late to change anything.</p>
+      <p class="cs-section__lede">For lower-income households especially, an unexpectedly high bill isn't just an inconvenience — it can mean a missed payment, a late fee, or disconnection. The problem isn't that people don't care about their usage; it's that the bill gives them no way to see it coming.</p>
+    </div>
+  </section>
+
+  <!-- USERS -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">02</span>
+      <h2 class="cs-section__title">Who it's for</h2>
+      <div class="cs-two-col">
+        <div class="user-card reveal">
+          <span class="user-card__role">Primary</span>
+          <h4>The household bill-payer</h4>
+          <ul>
+            <li>Manages the family's monthly budget</li>
+            <li>Checks usage reactively, only after the bill arrives</li>
+            <li>Wants a warning before the bill is a surprise, not a breakdown after</li>
+          </ul>
+        </div>
+        <div class="user-card reveal">
+          <span class="user-card__role">Secondary</span>
+          <h4>The budget-conscious renter</h4>
+          <ul>
+            <li>Splits utility costs with roommates</li>
+            <li>Needs to explain and justify shared costs</li>
+            <li>Wants usage data simple enough to screenshot and share</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOALS -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">03</span>
+      <h2 class="cs-section__title">Goals</h2>
+      <p class="cs-section__lede">Beyond looking clean, the product needed to change behavior: catch a high bill early, not just report it late.</p>
+      <div class="flow reveal">
+        <div class="flow__step">Reduce billing surprises</div><span class="flow__arrow">→</span>
+        <div class="flow__step">Make usage legible</div><span class="flow__arrow">→</span>
+        <div class="flow__step">Prompt action before due date</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH / INSIGHTS -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">04</span>
+      <h2 class="cs-section__title">Research &amp; insights</h2>
+      <p class="cs-section__lede">With a 24-hour build window, research was fast and targeted: short interviews with five household bill-payers, a teardown of three existing utility apps, and a quick heuristic pass on the physical paper bill itself — which turned out to be most people's only real mental model of "what a bill looks like."</p>
+
+      <div class="insight reveal">
+        <div class="insight__row">
+          <div class="insight__label">Finding</div>
+          <div class="insight__text">Every person interviewed could describe last month's bill amount, but none could describe what changed since the month before.</div>
+        </div>
+        <div class="insight__row">
+          <div class="insight__label">Implication</div>
+          <div class="insight__text">The single total number was the only thing being communicated — trend and cause were invisible.</div>
+        </div>
+        <div class="insight__row">
+          <div class="insight__label">Action</div>
+          <div class="insight__text">Made month-over-month comparison a primary, always-visible element rather than a secondary chart.</div>
+        </div>
+      </div>
+
+      <div class="insight reveal">
+        <div class="insight__row">
+          <div class="insight__label">Finding</div>
+          <div class="insight__text">Existing utility apps we tore down all led with account/meter numbers and settings — not the bill itself.</div>
+        </div>
+        <div class="insight__row">
+          <div class="insight__label">Implication</div>
+          <div class="insight__text">The information people open the app for was consistently one or two taps deeper than it needed to be.</div>
+        </div>
+        <div class="insight__row">
+          <div class="insight__label">Action</div>
+          <div class="insight__text">Put the current bill status, not a dashboard menu, as the home screen's first and only focus.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IA + USER FLOW -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">05</span>
+      <h2 class="cs-section__title">Structure &amp; flow</h2>
+      <p class="cs-section__lede">With three real screens to design in the time available, the structure stayed deliberately flat — everything a bill-payer needs is one tap from home.</p>
+      <div class="flow reveal" style="margin-bottom:36px;">
+        <div class="flow__step">Home / Bill Status</div><span class="flow__arrow">→</span>
+        <div class="flow__step">Usage Breakdown</div><span class="flow__arrow">→</span>
+        <div class="flow__step">Set Budget Alert</div><span class="flow__arrow">→</span>
+        <div class="flow__step">Confirmation</div>
+      </div>
+      <p class="cs-section__lede" style="margin-bottom:0;">No account setup, no settings menu, no onboarding tour — for the hackathon scope, every screen had to earn its place in the flow or get cut.</p>
+    </div>
+  </section>
+
+  <!-- DESIGN EXPLORATION -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">06</span>
+      <h2 class="cs-section__title">Design exploration</h2>
+      <p class="cs-section__lede">Two directions competed for the home screen: a chart-first dashboard, and a status-first summary. The team evaluated both against the core goal — reducing surprise, not maximizing data density.</p>
+      <div class="ba reveal">
+        <div class="ba__panel ba__panel--before">
+          <span class="ba__tag">Option A — Rejected</span>
+          <p>A dashboard of usage charts up front. Data-rich, but it asked the user to interpret a graph before telling them whether they were in good shape or not.</p>
+        </div>
+        <div class="ba__panel ba__panel--after">
+          <span class="ba__tag">Option B — Selected</span>
+          <p>A plain-language status line first — "On track" or "Higher than usual" — with the chart available underneath for anyone who wants the detail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN DECISIONS -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">07</span>
+      <h2 class="cs-section__title">Key design decisions</h2>
+      <div class="decision-list">
+        <div class="decision reveal">
+          <div class="decision__topic">Status before data</div>
+          <div class="decision__why">The home screen answers "am I okay?" in one glance, before it shows a single chart. That's the question every interviewee actually had.</div>
+        </div>
+        <div class="decision reveal">
+          <div class="decision__topic">Comparison, not just totals</div>
+          <div class="decision__why">Every number on the bill breakdown is shown next to last month's equivalent, so a change is visible without doing mental math.</div>
+        </div>
+        <div class="decision reveal">
+          <div class="decision__topic">One accent color, used sparingly</div>
+          <div class="decision__why">A single amber accent is reserved only for "needs attention" states, so it stays meaningful instead of decorative.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UI DESIGN (mock screens) -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">08</span>
+      <h2 class="cs-section__title">UI design</h2>
+      <p class="cs-section__lede">The home screen, embedded below as the actual clickable Figma prototype.</p>
+
+      <div class="mock-frame reveal">
+        <div class="mock-frame__bar">
+          <span class="mock-frame__dot"></span><span class="mock-frame__dot"></span><span class="mock-frame__dot"></span>
+          <span class="mock-frame__label">LumiNotes — Interactive Prototype</span>
+        </div>
+        <div class="mock-frame__body" style="padding:0;">
+          <iframe
+            style="border:none;width:100%;height:540px;display:block;"
+            src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FqcHjEcbE2DixqXUpmrPbLL%2FThe-Figma-Fuelled-Galactic-Overlord-Pixies-Interface-Battalion%3Fnode-id%3D450-6590%26t%3DAFPBaTsNjXYFJ8i1-1%26scaling%3Dscale-down%26content-scaling%3Dfixed%26page-id%3D0%253A1%26starting-point-node-id%3D450%253A6590"
+            allowfullscreen
+            loading="lazy"
+            title="LumiNotes interactive Figma prototype">
+          </iframe>
+        </div>
+      </div>
+      <p class="mock-caption reveal">Click through the live prototype above, or <a href="https://www.figma.com/proto/qcHjEcbE2DixqXUpmrPbLL/The-Figma-Fuelled-Galactic-Overlord-Pixies-Interface-Battalion?node-id=450-6590&t=AFPBaTsNjXYFJ8i1-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=450%3A6590" target="_blank" rel="noopener" style="color:var(--blueprint);">open it directly in Figma →</a></p>
+
+
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">09</span>
+      <h2 class="cs-section__title">Design system basics</h2>
+      <p class="cs-section__lede">A small, hackathon-scoped system — enough for consistency across three screens without slowing the build down.</p>
+      <div class="dsys reveal" style="margin-bottom:28px;">
+        <div class="dsys__swatch" style="background: #0066CC;"><span>Blue</span></div>
+        <div class="dsys__swatch" style="background:#0B1F4B ;"><span>Navy</span></div>
+        <div class="dsys__swatch" style="background:#FFFFFF;"><span>White</span></div>
+        <div class="dsys__swatch" style="background:#E8F0FF ;"><span>Soft Blue</span></div>
+        <div class="dsys__swatch" style="background:#FFD43B"><span>Yellow</span></div>
+        <div class="dsys__swatch" style="background:#32B768;"><span>Green</span></div>
+      </div>
+      <div class="comp-row reveal">
+        <button class="dsys-btn dsys-btn--filled">Set alert</button>
+        <button class="dsys-btn">View details</button>
+        <input class="dsys-input" placeholder="₱ Budget amount" disabled>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">10</span>
+      <h2 class="cs-section__title">Outcome</h2>
+      <p class="cs-section__lede">LumiNotes won first place at the university hackathon, with judges specifically calling out the status-first home screen as the strongest differentiator against other billing-app entries.</p>
+      <p class="outcome-note">This was a 24-hour hackathon project — a working, judged prototype rather than a shipped product with live usage data.</p>
+    </div>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="cs-section">
+    <div class="wrap">
+      <span class="cs-section__num">11</span>
+      <h2 class="cs-section__title">Reflection</h2>
+      <div class="reflect reveal">
+        <div class="reflect__col">
+          <h4>What I learned</h4>
+          <p>Under a hard deadline, cutting scope is a design decision, not a compromise — deciding what the home screen would not try to do was as important as what it would.</p>
+        </div>
+        <div class="reflect__col">
+          <h4>What I'd improve</h4>
+          <p>The budget-alert flow was the least tested piece. Given more time, I'd validate the alert threshold-setting interaction with actual bill-payers, not just the team.</p>
+        </div>
+        <div class="reflect__col">
+          <h4>What I'd do next</h4>
+          <p>Extend the comparison pattern used on the home screen into a full usage-history view, so trend-spotting isn't limited to a single month-over-month glance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="next-project reveal">
+      <div>
+        <div class="next-project__label">Next case study</div>
+        <div class="next-project__name">Clinician Dashboard — coming soon</div>
+      </div>
+      <a href="index.html#work" class="btn btn--ghost">All work →</a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer__row">
+      <span>© <span data-year>2026</span> Reniel Medrano</span>
+      <div class="footer__links">
+        <a href="mailto:hello@renielmedrano.com">Email</a>
+        <a href="https://linkedin.com/in/renielmedrano" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/renielmedrano" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

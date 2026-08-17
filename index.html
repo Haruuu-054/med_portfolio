@@ -4,1565 +4,427 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reniel Medrano — UI/UX Designer</title>
-    <style>
-      /* ----- neumorphism reset & base ----- */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --bg: #e0e5ec;
-        --bg-light: #f0f4fa;
-        --shadow-light: #ffffff;
-        --shadow-dark: #b8bcc8;
-        --primary: #5b7a9a;
-        --primary-dark: #3d5a78;
-        --text: #2d3a4a;
-        --text-muted: #5b6f82;
-        --radius-lg: 28px;
-        --radius-md: 18px;
-        --radius-sm: 40px;
-        --neumo-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-        --neumo-shadow-inset: inset 4px 4px 8px var(--shadow-dark), inset -4px -4px 8px var(--shadow-light);
-        --neumo-shadow-small: 4px 4px 8px var(--shadow-dark), -4px -4px 8px var(--shadow-light);
-        --neumo-shadow-hover: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
-        --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-      }
-
-      body {
-        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        -webkit-font-smoothing: antialiased;
-        scroll-behavior: smooth;
-        padding: 20px;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4 {
-        font-weight: 600;
-        letter-spacing: -0.02em;
-        color: var(--text);
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      button {
-        font: inherit;
-        cursor: pointer;
-        border: none;
-        background: none;
-      }
-
-      .wrap {
-        max-width: 1160px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      /* ----- neumorphic card base ----- */
-      .neu-card {
-        background: var(--bg);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--neumo-shadow);
-        transition: var(--transition);
-      }
-      .neu-card:hover {
-        box-shadow: var(--neumo-shadow-hover);
-      }
-      .neu-card-inset {
-        background: var(--bg);
-        border-radius: var(--radius-md);
-        box-shadow: var(--neumo-shadow-inset);
-      }
-      .neu-pill {
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        box-shadow: var(--neumo-shadow-small);
-        transition: var(--transition);
-      }
-      .neu-pill:hover {
-        box-shadow: var(--neumo-shadow);
-      }
-
-      /* ----- navbar ----- */
-      .navbar-shell {
-        padding: 0 0 20px 0;
-      }
-      .navbar {
-        max-width: 1160px;
-        margin: 0 auto;
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        padding: 10px 16px 10px 24px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        box-shadow: var(--neumo-shadow);
-        transition: var(--transition);
-      }
-      .navbar:hover {
-        box-shadow: var(--neumo-shadow-hover);
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        transition: var(--transition);
-      }
-      .brand:hover {
-        transform: scale(1.02);
-      }
-
-      .brand-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-      }
-      .brand-icon:hover {
-        box-shadow: var(--neumo-shadow);
-      }
-      .brand-icon svg {
-        width: 24px;
-        height: 24px;
-        display: block;
-      }
-
-      .brand-name {
-        font-weight: 700;
-        font-size: 1.1rem;
-        color: var(--text);
-        letter-spacing: -0.02em;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 28px;
-        align-items: center;
-        list-style: none;
-      }
-      .nav-links a {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        font-weight: 500;
-        padding: 8px 14px;
-        border-radius: var(--radius-sm);
-        transition: var(--transition);
-      }
-      .nav-links a:hover {
-        color: var(--text);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-      }
-
-      .nav-cta {
-        padding: 10px 26px;
-        border-radius: var(--radius-sm);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        font-weight: 700;
-        color: var(--primary);
-        transition: var(--transition);
-      }
-      .nav-cta:hover {
-        box-shadow: var(--neumo-shadow);
-        transform: translateY(-2px);
-        color: var(--primary-dark);
-      }
-
-      .nav-toggle {
-        display: none;
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        font-size: 1.2rem;
-        color: var(--text);
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-      }
-      .nav-toggle:hover {
-        box-shadow: var(--neumo-shadow);
-      }
-
-      /* ----- hero ----- */
-      .hero-shell {
-        padding: 0 0 20px 0;
-      }
-      .hero {
-        max-width: 1160px;
-        margin: 0 auto;
-        background: var(--bg);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--neumo-shadow);
-        padding: 52px 52px 44px;
-        display: grid;
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 40px;
-        align-items: center;
-        transition: var(--transition);
-      }
-      .hero:hover {
-        box-shadow: var(--neumo-shadow-hover);
-      }
-
-      .email-chip {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--bg);
-        padding: 6px 18px 6px 6px;
-        border-radius: var(--radius-sm);
-        box-shadow: var(--neumo-shadow-small);
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        margin-bottom: 22px;
-        transition: var(--transition);
-      }
-      .email-chip:hover {
-        box-shadow: var(--neumo-shadow);
-      }
-
-      .email-dot {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .email-dot::after {
-        content: "";
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--primary);
-        opacity: 0.7;
-      }
-
-      .hero h1 {
-        font-size: 2.7rem;
-        line-height: 1.2;
-        color: var(--text);
-        font-weight: 800;
-      }
-      .hero h1 .accent {
-        color: var(--primary);
-      }
-      .hero p.sub {
-        margin-top: 20px;
-        color: var(--text-muted);
-        font-size: 1.02rem;
-        line-height: 1.7;
-        max-width: 46ch;
-      }
-      .hero p.sub a {
-        text-decoration: underline;
-        color: var(--text);
-        font-weight: 500;
-        transition: color 0.2s;
-      }
-      .hero p.sub a:hover {
-        color: var(--primary);
-      }
-
-      .hero-actions {
-        margin-top: 30px;
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-      }
-
-      .btn {
-        padding: 13px 30px;
-        border-radius: var(--radius-sm);
-        font-weight: 700;
-        font-size: 0.95rem;
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        transition: var(--transition);
-        display: inline-block;
-        text-align: center;
-        color: var(--text);
-      }
-      .btn:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--neumo-shadow);
-      }
-      .btn-primary {
-        color: #fff;
-        background: var(--primary);
-        box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-      }
-      .btn-primary:hover {
-        background: var(--primary-dark);
-        box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-      }
-      .btn-secondary {
-        color: var(--primary);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-      }
-      .btn-secondary:hover {
-        color: var(--primary-dark);
-        box-shadow: var(--neumo-shadow);
-      }
-
-      .avatar {
-        width: 280px;
-        height: 280px;
-        border-radius: 50%;
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-        margin: 0 auto;
-        overflow: hidden;
-      }
-      .avatar:hover {
-        box-shadow: var(--neumo-shadow-hover);
-        transform: scale(1.02);
-      }
-      .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-
-      /* ===== EXPERIENCE ===== */
-      .experience {
-        padding: 60px 0 30px;
-      }
-      .experience .wrap {
-        display: grid;
-        grid-template-columns: 0.85fr 1.6fr;
-        gap: 56px;
-      }
-      .exp-heading h2 {
-        font-size: 2rem;
-        color: var(--text);
-        margin-bottom: 34px;
-        position: relative;
-        display: inline-block;
-      }
-      .exp-heading h2::after {
-        content: "";
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 40px;
-        height: 4px;
-        background: var(--primary);
-        border-radius: 4px;
-        opacity: 0.5;
-      }
-
-      .timeline {
-        list-style: none;
-        position: relative;
-        padding-left: 8px;
-      }
-      .timeline::before {
-        content: "";
-        position: absolute;
-        left: 6px;
-        top: 8px;
-        bottom: 8px;
-        width: 3px;
-        background: var(--shadow-dark);
-        border-radius: 4px;
-        transition: var(--transition);
-      }
-      .timeline:hover::before {
-        background: var(--primary);
-        opacity: 0.4;
-      }
-
-      .timeline li {
-        position: relative;
-        padding-left: 32px;
-        margin-bottom: 28px;
-        transition: var(--transition);
-        cursor: default;
-        padding-top: 4px;
-      }
-      .timeline li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 6px;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        border: 3px solid var(--primary);
-        transition: var(--transition);
-        z-index: 1;
-      }
-      .timeline li:hover::before {
-        transform: scale(1.3);
-        border-color: var(--primary-dark);
-        box-shadow: var(--neumo-shadow);
-      }
-      .timeline li:hover .role {
-        color: var(--primary-dark);
-      }
-
-      .timeline .role {
-        font-weight: 700;
-        color: var(--text);
-        transition: var(--transition);
-        font-size: 1.05rem;
-      }
-      .timeline .org {
-        color: var(--primary);
-        font-weight: 600;
-        font-size: 0.9rem;
-        display: block;
-        margin-top: 2px;
-        transition: var(--transition);
-      }
-      .timeline li:hover .org {
-        color: var(--primary-dark);
-      }
-      .timeline .date {
-        color: var(--text-muted);
-        font-size: 0.82rem;
-        display: inline-block;
-        margin-top: 4px;
-        padding: 2px 12px;
-        border-radius: var(--radius-sm);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        transition: var(--transition);
-      }
-      .timeline li:hover .date {
-        box-shadow: var(--neumo-shadow);
-        color: var(--text);
-      }
-
-      .exp-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .exp-card {
-        background: var(--bg);
-        border-radius: var(--radius-md);
-        box-shadow: var(--neumo-shadow);
-        padding: 24px 28px 20px;
-        transition: var(--transition);
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-      }
-      .exp-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-        opacity: 0;
-        transition: var(--transition);
-      }
-      .exp-card:hover {
-        box-shadow: var(--neumo-shadow-hover);
-        transform: translateY(-4px);
-      }
-      .exp-card:hover::after {
-        opacity: 1;
-      }
-
-      .exp-card-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 10px;
-      }
-      .exp-card-head h3 {
-        font-size: 1.05rem;
-        color: var(--text);
-        transition: var(--transition);
-      }
-      .exp-card:hover .exp-card-head h3 {
-        color: var(--primary-dark);
-      }
-      .exp-card-head span {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        font-weight: 500;
-        background: var(--bg);
-        padding: 4px 14px;
-        border-radius: var(--radius-sm);
-        box-shadow: var(--neumo-shadow-small);
-        transition: var(--transition);
-        white-space: nowrap;
-      }
-      .exp-card:hover .exp-card-head span {
-        box-shadow: var(--neumo-shadow);
-        color: var(--text);
-      }
-
-      .exp-card .exp-preview {
-        color: var(--text-muted);
-        font-size: 0.92rem;
-        line-height: 1.65;
-        transition: var(--transition);
-      }
-      .exp-card:hover .exp-preview {
-        color: var(--text);
-      }
-
-      .exp-details {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.1), opacity 0.4s ease, margin 0.3s ease;
-        opacity: 0;
-        margin-top: 0;
-      }
-      .exp-card.expanded .exp-details {
-        max-height: 600px;
-        opacity: 1;
-        margin-top: 14px;
-      }
-
-      .exp-details-inner {
-        padding-top: 16px;
-        border-top: 2px solid var(--bg-light);
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-      .exp-details-inner p {
-        color: var(--text-muted);
-        font-size: 0.88rem;
-        line-height: 1.6;
-        padding-left: 4px;
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      .exp-details-inner p::before {
-        content: "▸";
-        color: var(--primary);
-        font-weight: 700;
-        opacity: 0.7;
-        flex-shrink: 0;
-      }
-
-      .exp-toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 12px;
-        color: var(--primary);
-        font-weight: 600;
-        font-size: 0.85rem;
-        padding: 6px 16px 6px 12px;
-        border-radius: var(--radius-sm);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        transition: var(--transition);
-      }
-      .exp-toggle:hover {
-        box-shadow: var(--neumo-shadow);
-        color: var(--primary-dark);
-      }
-      .exp-toggle .arrow {
-        transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1);
-        display: inline-block;
-        font-size: 1rem;
-      }
-      .exp-card.expanded .exp-toggle .arrow {
-        transform: rotate(180deg);
-      }
-
-      /* ----- projects ----- */
-      .projects-shell {
-        padding: 20px 0 50px;
-      }
-      .projects {
-        max-width: 1160px;
-        margin: 0 auto;
-        background: var(--bg);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--neumo-shadow);
-        padding: 44px 44px 48px;
-        transition: var(--transition);
-      }
-      .projects:hover {
-        box-shadow: var(--neumo-shadow-hover);
-      }
-
-      .projects-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-      .projects-head h2 {
-        font-size: 1.7rem;
-        color: var(--text);
-        position: relative;
-        display: inline-block;
-      }
-      .projects-head h2::after {
-        content: "";
-        position: absolute;
-        bottom: -6px;
-        left: 0;
-        width: 32px;
-        height: 3px;
-        background: var(--primary);
-        border-radius: 4px;
-        opacity: 0.4;
-      }
-      .view-all {
-        padding: 11px 26px;
-        border-radius: var(--radius-sm);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        font-weight: 700;
-        font-size: 0.9rem;
-        color: var(--primary);
-        transition: var(--transition);
-      }
-      .view-all:hover {
-        box-shadow: var(--neumo-shadow);
-        transform: translateY(-2px);
-        color: var(--primary-dark);
-      }
-
-      .project-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-
-      .project-card-link {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        transition: var(--transition);
-        cursor: pointer;
-      }
-      .project-card-link:hover {
-        transform: translateY(-6px);
-      }
-
-      .project-card {
-        background: var(--bg);
-        border-radius: var(--radius-md);
-        box-shadow: var(--neumo-shadow);
-        overflow: hidden;
-        transition: var(--transition);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-      }
-      .project-card:hover {
-        box-shadow: var(--neumo-shadow-hover);
-      }
-
-      .project-thumb {
-        height: 190px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        background: var(--bg-light);
-        flex-shrink: 0;
-      }
-      .project-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.4s ease;
-      }
-      .project-card-link:hover .project-thumb img {
-        transform: scale(1.05);
-      }
-
-      .project-body {
-        padding: 20px 22px 24px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-      .project-body h3 {
-        font-size: 1.02rem;
-        color: var(--text);
-        margin-bottom: 8px;
-        transition: color 0.3s ease;
-      }
-      .project-card-link:hover .project-body h3 {
-        color: var(--primary-dark);
-      }
-      .project-body p {
-        color: var(--text-muted);
-        font-size: 0.88rem;
-        line-height: 1.6;
-        flex: 1;
-      }
-
-      .case-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 12px 0 14px;
-      }
-      .case-meta span {
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        box-shadow: var(--neumo-shadow-small);
-        color: var(--text-muted);
-        font-size: 0.72rem;
-        font-weight: 600;
-        padding: 4px 14px;
-      }
-
-      .case-toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--primary);
-        font-weight: 700;
-        font-size: 0.85rem;
-        padding: 6px 12px;
-        border-radius: var(--radius-sm);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        transition: var(--transition);
-        border: none;
-        align-self: flex-start;
-        margin-top: auto;
-        pointer-events: none;
-      }
-      .case-toggle .arrow {
-        transition: transform 0.3s;
-        display: inline-block;
-        font-size: 1.1rem;
-      }
-
-      /* ----- process ----- */
-      .contact-shell {
-        padding: 20px 0 30px;
-      }
-      .contact {
-        max-width: 960px;
-        margin: 0 auto;
-      }
-      .contact-panel {
-        background: var(--bg);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--neumo-shadow);
-        padding: 40px 40px 34px;
-        transition: var(--transition);
-        min-height: 280px;
-      }
-      .contact-panel:hover {
-        box-shadow: var(--neumo-shadow-hover);
-      }
-
-      .contact-eyebrow {
-        color: var(--primary);
-        font-weight: 700;
-        font-size: 0.8rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-bottom: 4px;
-      }
-      .contact-panel h3 {
-        font-size: 1.4rem;
-        color: var(--text);
-        margin-bottom: 12px;
-      }
-      .contact-panel p {
-        color: var(--text-muted);
-        font-size: 0.96rem;
-        line-height: 1.7;
-        max-width: 56ch;
-        margin-bottom: 22px;
-      }
-
-      .option-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-      }
-      .option-card {
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        box-shadow: var(--neumo-shadow-small);
-        padding: 14px 16px;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-        transition: var(--transition);
-        text-align: center;
-        font-weight: 500;
-      }
-      .option-card.selected {
-        box-shadow: var(--neumo-shadow-inset);
-        color: var(--text);
-        font-weight: 600;
-      }
-      .option-card:hover:not(.selected) {
-        box-shadow: var(--neumo-shadow);
-      }
-
-      .contact-footer {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-        gap: 12px;
-      }
-
-      .steps {
-        display: flex;
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        box-shadow: var(--neumo-shadow-small);
-        padding: 6px;
-        margin: 22px auto 0;
-        max-width: 960px;
-        gap: 6px;
-      }
-      .step-btn {
-        flex: 1;
-        text-align: center;
-        padding: 13px 8px;
-        border-radius: var(--radius-sm);
-        background: transparent;
-        color: var(--text-muted);
-        font-weight: 600;
-        font-size: 0.88rem;
-        transition: var(--transition);
-      }
-      .step-btn.active {
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-inset);
-        color: var(--text);
-      }
-      .step-btn.done {
-        color: var(--primary);
-      }
-      .step-btn:hover:not(.active) {
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-      }
-
-      /* ===== CHATBOT ===== */
-      .chatbot-shell {
-        padding: 20px 0 30px;
-      }
-      .chatbot-container {
-        max-width: 960px;
-        margin: 0 auto;
-        background: var(--bg);
-        border-radius: var(--radius-lg);
-        box-shadow: var(--neumo-shadow);
-        padding: 32px 32px 28px;
-        transition: var(--transition);
-      }
-      .chatbot-container:hover {
-        box-shadow: var(--neumo-shadow-hover);
-      }
-      .chatbot-header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 18px;
-      }
-      .chatbot-header h3 {
-        font-size: 1.2rem;
-        color: var(--text);
-      }
-      .chatbot-header span {
-        background: var(--primary);
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        display: inline-block;
-        animation: pulse 1.8s infinite;
-      }
-      @keyframes pulse {
-        0% {
-          opacity: 0.6;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 1;
-          transform: scale(1.2);
-        }
-        100% {
-          opacity: 0.6;
-          transform: scale(1);
-        }
-      }
-      .chat-messages {
-        background: var(--bg-light);
-        border-radius: var(--radius-md);
-        box-shadow: var(--neumo-shadow-inset);
-        padding: 20px 20px 10px;
-        max-height: 340px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 16px;
-      }
-      .chat-msg {
-        padding: 12px 18px;
-        border-radius: var(--radius-sm);
-        max-width: 85%;
-        font-size: 0.92rem;
-        line-height: 1.6;
-        box-shadow: var(--neumo-shadow-small);
-        background: var(--bg);
-        color: var(--text);
-        align-self: flex-start;
-        animation: fadeUp 0.3s ease;
-      }
-      .chat-msg.user {
-        align-self: flex-end;
-        background: var(--primary);
-        color: #fff;
-        box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-      }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .chat-input-row {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-      }
-      .chat-input-row input {
-        flex: 1;
-        padding: 14px 20px;
-        border-radius: var(--radius-sm);
-        border: none;
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-inset);
-        font-size: 0.95rem;
-        color: var(--text);
-        outline: none;
-        transition: var(--transition);
-      }
-      .chat-input-row input:focus {
-        box-shadow: var(--neumo-shadow);
-      }
-      .chat-input-row input::placeholder {
-        color: var(--text-muted);
-        opacity: 0.7;
-      }
-      .chat-send {
-        padding: 14px 28px;
-        border-radius: var(--radius-sm);
-        background: var(--primary);
-        color: #fff;
-        font-weight: 700;
-        box-shadow: 6px 6px 12px var(--shadow-dark), -6px -6px 12px var(--shadow-light);
-        transition: var(--transition);
-        flex-shrink: 0;
-      }
-      .chat-send:hover {
-        background: var(--primary-dark);
-        box-shadow: 8px 8px 16px var(--shadow-dark), -8px -8px 16px var(--shadow-light);
-        transform: translateY(-2px);
-      }
-      .chat-suggestions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 14px;
-      }
-      .chat-suggestions button {
-        padding: 8px 18px;
-        border-radius: var(--radius-sm);
-        background: var(--bg);
-        box-shadow: var(--neumo-shadow-small);
-        font-size: 0.8rem;
-        color: var(--text-muted);
-        transition: var(--transition);
-        font-weight: 500;
-      }
-      .chat-suggestions button:hover {
-        box-shadow: var(--neumo-shadow);
-        color: var(--text);
-        transform: translateY(-2px);
-      }
-
-      /* ----- footer ----- */
-      footer {
-        margin-top: 50px;
-        background: var(--bg);
-        color: var(--text-muted);
-        padding: 50px 20px 24px;
-        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-        box-shadow: var(--neumo-shadow);
-      }
-      .footer-grid {
-        max-width: 1160px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
-        gap: 36px;
-        padding-bottom: 36px;
-        border-bottom: 2px solid var(--bg-light);
-      }
-      .footer-brand h4 {
-        color: var(--text);
-        font-size: 1.1rem;
-      }
-      .footer-brand p {
-        color: var(--text-muted);
-        font-size: 0.9rem;
-        line-height: 1.7;
-        margin-top: 14px;
-        max-width: 32ch;
-      }
-      .footer-col h4 {
-        color: var(--text);
-        font-size: 0.92rem;
-        margin-bottom: 16px;
-      }
-      .footer-col ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .footer-col a {
-        color: var(--text-muted);
-        font-size: 0.88rem;
-        transition: color 0.2s;
-        padding: 4px 0;
-      }
-      .footer-col a:hover {
-        color: var(--text);
-      }
-      .footer-bottom {
-        max-width: 1160px;
-        margin: 22px auto 0;
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.82rem;
-        color: var(--text-muted);
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      /* ----- responsive ----- */
-      @media (max-width: 900px) {
-        .hero {
-          grid-template-columns: 1fr;
-          padding: 36px 28px;
-        }
-        .hero-photo {
-          order: -1;
-          display: flex;
-          justify-content: center;
-        }
-        .avatar {
-          width: 200px;
-          height: 200px;
-        }
-        .hero h1 {
-          font-size: 2.1rem;
-        }
-        .experience .wrap {
-          grid-template-columns: 1fr;
-          gap: 30px;
-        }
-        .project-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .footer-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .option-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      @media (max-width: 680px) {
-        body {
-          padding: 12px;
-        }
-        .nav-links {
-          position: absolute;
-          top: 74px;
-          left: 20px;
-          right: 20px;
-          background: var(--bg);
-          flex-direction: column;
-          align-items: stretch;
-          padding: 20px;
-          border-radius: var(--radius-md);
-          display: none;
-          gap: 12px;
-          box-shadow: var(--neumo-shadow-hover);
-          z-index: 20;
-        }
-        .nav-links.open {
-          display: flex;
-        }
-        .nav-toggle {
-          display: flex;
-        }
-        .nav-cta {
-          display: none;
-        }
-        .nav-links .nav-cta-mobile {
-          display: block;
-          padding: 12px;
-          border-radius: var(--radius-sm);
-          background: var(--bg);
-          box-shadow: var(--neumo-shadow-small);
-          font-weight: 700;
-          text-align: center;
-          color: var(--primary);
-        }
-        .hero {
-          padding: 28px 20px;
-          border-radius: var(--radius-md);
-        }
-        .hero-actions {
-          flex-direction: column;
-        }
-        .btn {
-          text-align: center;
-          width: 100%;
-        }
-        .project-grid {
-          grid-template-columns: 1fr;
-        }
-        .option-grid {
-          grid-template-columns: 1fr;
-        }
-        .contact-panel {
-          padding: 24px 18px;
-        }
-        .steps {
-          overflow-x: auto;
-        }
-        .step-btn {
-          flex: 0 0 auto;
-          padding: 12px 18px;
-        }
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
-        .contact-footer {
-          flex-direction: column;
-        }
-        .contact-footer .btn {
-          width: 100%;
-          text-align: center;
-        }
-        .exp-card-head {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .exp-card-head span {
-          font-size: 0.75rem;
-        }
-        .chat-input-row {
-          flex-direction: column;
-        }
-        .chat-send {
-          width: 100%;
-          text-align: center;
-        }
-      }
-    </style>
+    <meta
+      name="description"
+      content="UI/UX designer with a Computer Science foundation, designing interfaces that hold up in code. Case studies, design process, and contact."
+    />
+    <meta property="og:title" content="Reniel Medrano — UI/UX Designer" />
+    <meta
+      property="og:description"
+      content="Design × development. Case-study-driven UI/UX portfolio."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%2314161B%22/><text x=%2250%22 y=%2266%22 font-family=%22monospace%22 font-size=%2250%22 fill=%22%232A4CE0%22 text-anchor=%22middle%22>R</text></svg>"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-
-    <!-- NAVBAR -->
-    <div class="navbar-shell">
-      <nav class="navbar">
-        <a href="#top" class="brand" aria-label="Home">
-          <img src="assets/logo.png" alt="Logo" style="height:40px; width:auto" />
-          <span class="brand-name">Reniel Medrano</span>
-        </a>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#work">Work</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#process">Process</a></li>
-          <li><a href="#contact" class="nav-cta-mobile">Contact</a></li>
-        </ul>
-        <a href="#contact" class="nav-cta">Contact me</a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
-      </nav>
+    <div class="rail" aria-hidden="true">
+      <span class="rail__mark">RM / PORTFOLIO / 2026</span>
+      <span class="rail__dot"></span>
     </div>
 
-    <!-- HERO -->
-    <div class="hero-shell" id="top">
-      <section class="hero">
-        <div class="hero-copy">
-          <span class="email-chip">
-            <span class="email-dot"></span>
-            renielmedrano4@gmail.com
-          </span>
-          <h1>Hi, I'm Reniel Medrano. I design digital products that are <span class="accent">simple, useful, and human.</span></h1>
-          <p class="sub">A <a href="#about">great design</a> is measured by how <a href="#work">efficiently people can do what they</a> came to do.</p>
-          <div class="hero-actions">
-            <a href="#work" class="btn btn-secondary">View my Works</a>
-            <a href="#contact" class="btn btn-primary">Contact me</a>
-          </div>
-        </div>
-        <div class="hero-photo">
-          <div class="avatar">
-            <img src="assets/rmedrano.png" alt="Reniel Medrano" />
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <!-- EXPERIENCE -->
-    <section class="experience" id="about">
+    <nav class="nav">
       <div class="wrap">
-        <div class="exp-heading">
-          <h2>Experience</h2>
-          <ul class="timeline">
-            <li><div class="role">UI/UX Designer Intern</div><span class="org">Governor's Place Condominium Association Inc.</span><span class="date">Feb 2026 – May 2026</span></li>
-            <li><div class="role">University Department UI/UX Designer</div><span class="org">Manuel S. Enverga University Foundation - Candelaria Inc.</span><span class="date">2023 – 2025</span></li>
-            <li><div class="role">Product Designer &amp; Developer</div><span class="org">Freelance</span><span class="date">Dec 2025 – Jan 2026</span></li>
-          </ul>
-        </div>
-        <div class="exp-cards">
-          <div class="exp-card" data-exp="0">
-            <div class="exp-card-head"><h3>UI/UX Designer Intern</h3><span>Governor's Place • Feb 2026 – May 2026</span></div>
-            <p class="exp-preview">Designed user flows, wireframes, high-fidelity mockups, and interactive prototypes in Figma for responsive web applications.</p>
-            <div class="exp-details"><div class="exp-details-inner"><p>Conducted user research, usability testing, and design iterations to improve user experience and accessibility.</p><p>Collaborated with stakeholders and developers to create intuitive, user-centered interfaces.</p><p>Developed responsive front-end interfaces using HTML, CSS, JavaScript, React, and Tailwind CSS.</p><p>Assisted in developing and integrating web application features to ensure functionality and performance.</p><p>Leveraged AI-assisted design and development tools to streamline workflows while maintaining quality.</p></div></div>
-            <button class="exp-toggle" data-target="0"><span class="label">Show more</span><span class="arrow">▾</span></button>
+        <div class="nav__row">
+          <a href="#top" class="nav__name">Reniel Medrano<span>.</span></a>
+          <div class="nav__links">
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
           </div>
-          <div class="exp-card" data-exp="1">
-            <div class="exp-card-head"><h3>University Department UI/UX Designer</h3><span>MSEUF-Candelaria • 2023 – 2025</span></div>
-            <p class="exp-preview">Designed the mobile interaction and user flow for university websites.</p>
-            <div class="exp-details"><div class="exp-details-inner"><p>Designed mobile-first interactions and user flows for the university's main website and department portals.</p><p>Contributed to design discussions, feature planning, and documentation to support efficient implementation.</p><p>Created design systems and component libraries used across multiple university projects.</p><p>Mentored junior designers and conducted design workshops for student organizations.</p></div></div>
-            <button class="exp-toggle" data-target="1"><span class="label">Show more</span><span class="arrow">▾</span></button>
-          </div>
-          <div class="exp-card" data-exp="2">
-            <div class="exp-card-head"><h3>Product Designer &amp; Developer</h3><span>Freelance • Dec 2025 – Jan 2026</span></div>
-            <p class="exp-preview">Designed and developed a birthday invitation website for a client, including wireframes, mockups, and interactive prototypes.</p>
-            <div class="exp-details"><div class="exp-details-inner"><p>Delivered a complete, visually appealing, and user-friendly birthday invitation website from concept to deployment.</p><p>Created wireframes, high-fidelity mockups, and interactive prototypes in Figma.</p><p>Built the site using HTML, CSS, and JavaScript with responsive design for all devices.</p><p>Managed client communication, feedback loops, and delivered within a tight 2-week timeline.</p></div></div>
-            <button class="exp-toggle" data-target="2"><span class="label">Show more</span><span class="arrow">▾</span></button>
-          </div>
+          <a
+            href="/assets/resume/Reniel_Medrano resume.pdf"
+            class="nav__cta"
+            download
+            >Resume ↓</a
+          >
+          <button class="nav__toggle" aria-label="Open menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M3 6h18M3 12h18M3 18h18"
+                stroke="#14161B"
+                stroke-width="1.6"
+              />
+            </svg>
+          </button>
         </div>
       </div>
-    </section>
+    </nav>
 
-    <!-- PROJECTS -->
-    <div class="projects-shell" id="work">
-      <section class="projects">
-        <div class="projects-head"><h2>Selected Projects</h2><a href="projects.html" class="view-all">View all projects</a></div>
-        <div class="project-grid" id="projectGrid"></div>
+    <div class="mobile-nav" aria-hidden="true">
+      <button class="mobile-nav__close" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 6l12 12M18 6L6 18" stroke="#14161B" stroke-width="1.6" />
+        </svg>
+      </button>
+      <div class="mobile-nav__links">
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <a href="/assets/resume/Reniel_Medrano resume.pdf" download>Resume ↓</a>
+      </div>
+    </div>
+
+    <main id="top">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="wrap">
+          <div class="hero__grid">
+            <div class="reveal is-visible">
+              <span class="eyebrow">UI/UX Designer · CS Graduate</span>
+              <h1 class="hero__title">
+                I design interfaces that survive contact with
+                <span class="accent">code.</span>
+              </h1>
+              <p class="hero__statement">
+                I design where user needs, business goals, and technical
+                constraints actually meet — not just where they look good in a
+                mockup.
+              </p>
+              <div class="hero__cta-row">
+                <a href="#work" class="btn btn--primary">View my work →</a>
+                <a
+                  href="/assets/resume/Reniel_Medrano resume.pdf"
+                  class="btn btn--ghost"
+                  download
+                  >Download résumé</a
+                >
+              </div>
+            </div>
+            <div class="reveal is-visible">
+              <dl class="spec-panel">
+                <div class="spec-panel__row">
+                  <dt>Role</dt>
+                  <dd>UI/UX Designer</dd>
+                </div>
+                <div class="spec-panel__row">
+                  <dt>Foundation</dt>
+                  <dd>BS Computer Science</dd>
+                </div>
+                <div class="spec-panel__row">
+                  <dt>Focus</dt>
+                  <dd>Product Design · Design Systems</dd>
+                </div>
+                <div class="spec-panel__row">
+                  <dt>Stack</dt>
+                  <dd>Figma · HTML/CSS/JS · React</dd>
+                </div>
+                <div class="spec-panel__row">
+                  <dt>Based in</dt>
+                  <dd>Philippines</dd>
+                </div>
+                <div class="spec-panel__row">
+                  <dt>Status</dt>
+                  <dd>Open to roles</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- SELECTED WORK -->
+      <section id="work">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">Selected Work</span>
+            <h2>Three problems, worked through end to end.</h2>
+          </div>
+
+          <div class="work-list">
+            <a href="luminotes-case-study.html" class="work-item reveal">
+              <span class="work-item__index">01</span>
+              <div>
+                <div class="work-item__name">LumiNotes</div>
+                <div class="work-item__meta">
+                  <span class="tag">Energy Billing</span>
+                  <span class="tag">Mobile App</span>
+                  <span class="tag">Hackathon Winner</span>
+                </div>
+              </div>
+              <div>
+                <p class="work-item__problem">
+                  Helping households understand and act on confusing utility
+                  bills before the due date.
+                </p>
+                <span class="work-item__link">Read case study →</span>
+              </div>
+            </a>
+
+            <a href="paynroll.html" class="work-item reveal">
+              <span class="work-item__index">01</span>
+              <div>
+                <div class="work-item__name">EUC PayNroll</div>
+                <div class="work-item__meta">
+                  <span class="tag">Enrollment System</span>
+                  <span class="tag">Web Application</span>
+                  <span class="tag">UI/UX Design</span>
+                </div>
+              </div>
+              <div>
+                <p class="work-item__problem">
+                  Simplifying enrollment and transaction management through a
+                  centralized, user-friendly platform for students and
+                  administrators.
+                </p>
+                <span class="work-item__link">Read case study →</span>
+              </div>
+            </a>
+
+            <a href="astra-fitness.html" class="work-item reveal">
+              <span class="work-item__index">01</span>
+              <div>
+                <div class="work-item__name">Astra Fitness</div>
+                <div class="work-item__meta">
+                  <span class="tag">Fitness & Wellness</span>
+                  <span class="tag">Landing Page</span>
+                  <span class="tag">Responsive Web</span>
+                </div>
+              </div>
+              <div>
+                <p class="work-item__problem">
+                  Creating an energetic, conversion-focused fitness experience
+                  that motivates visitors to explore programs and take action.
+                </p>
+                <span class="work-item__link">Read case study →</span>
+              </div>
+            </a>
+          </div>
+        </div>
       </section>
-    </div>
 
-    <!-- PROCESS -->
-    <div class="contact-shell" id="process">
-      <section class="contact">
-        <div class="contact-panel" id="contactPanel"></div>
-        <div class="steps" id="stepBar"></div>
+      <!-- DESIGN PROCESS -->
+      <section id="process">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">Design Approach</span>
+            <h2>My process adapts to the problem, not a template.</h2>
+          </div>
+          <div class="process reveal">
+            <div class="process__stage">
+              <h3>Discover</h3>
+              <ul>
+                <li>Research</li>
+                <li>Understand context</li>
+                <li>Explore precedent</li>
+              </ul>
+            </div>
+            <div class="process__stage">
+              <h3>Define</h3>
+              <ul>
+                <li>Frame the problem</li>
+                <li>Map the users</li>
+                <li>Set the goals</li>
+              </ul>
+            </div>
+            <div class="process__stage">
+              <h3>Design</h3>
+              <ul>
+                <li>Flows &amp; IA</li>
+                <li>Wireframes</li>
+                <li>UI &amp; system</li>
+              </ul>
+            </div>
+            <div class="process__stage">
+              <h3>Validate &amp; Deliver</h3>
+              <ul>
+                <li>Prototype &amp; test</li>
+                <li>Iterate</li>
+                <li>Handoff to build</li>
+              </ul>
+            </div>
+          </div>
+          <p class="process__note reveal">
+            Some projects need deep research and testing. Others need a fast,
+            disciplined UI pass. I scale the process to what the problem
+            actually requires — never to what looks impressive in a deck.
+          </p>
+        </div>
       </section>
-    </div>
 
-    <!-- CHATBOT -->
-    <div class="chatbot-shell" id="chatbot">
-      <div class="chatbot-container">
-        <div class="chatbot-header">
-          <span></span>
-          <h3>🤖 Ask about Reniel</h3>
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="wrap">
+          <div class="about__grid">
+            <div class="section-head reveal" style="margin-bottom: 0">
+              <span class="eyebrow">About</span>
+              <h2>Design and engineering, from the same starting point.</h2>
+            </div>
+            <div class="about__body reveal">
+              <p>
+                I started in Computer Science, not design — which means I came
+                to UI/UX already thinking in systems, states, and constraints
+                rather than just screens.
+              </p>
+              <p>
+                That background shapes how I work now: I research and structure
+                a problem the way an engineer scopes one, then design the
+                interface the way a craftsperson finishes it. I'm as comfortable
+                in a usability test as I am reading through a component's
+                variant properties in Figma, or writing the HTML/CSS/JS that
+                gets a design into a browser.
+              </p>
+              <p>
+                I'm a fresh Computer Science graduate looking for a UI/UX or
+                product design role where that combination — research-backed
+                design decisions that a development team can actually build — is
+                the point, not a bonus.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="chat-messages" id="chatMessages">
-          <div class="chat-msg">👋 Hey! I'm Reniel's chatbot. Ask me about his design journey, skills, projects, or anything you're curious about.</div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">Skills</span>
+            <h2>What I bring to a design team.</h2>
+          </div>
+          <div class="skills__grid reveal">
+            <div class="skills__group">
+              <h4>UX</h4>
+              <ul>
+                <li>User research</li>
+                <li>User flows</li>
+                <li>Information architecture</li>
+                <li>Usability evaluation</li>
+                <li>UX audits</li>
+                <li>Wireframing</li>
+              </ul>
+            </div>
+            <div class="skills__group">
+              <h4>UI</h4>
+              <ul>
+                <li>Visual design</li>
+                <li>Interaction design</li>
+                <li>Responsive design</li>
+                <li>Design systems</li>
+                <li>Accessibility</li>
+              </ul>
+            </div>
+            <div class="skills__group">
+              <h4>Tools</h4>
+              <ul>
+                <li>Figma</li>
+                <li>FigJam</li>
+                <li>Adobe Creative Suite</li>
+                <li>Git / GitHub</li>
+              </ul>
+            </div>
+            <div class="skills__group">
+              <h4>Development</h4>
+              <ul>
+                <li>HTML &amp; CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Tailwind CSS</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="chat-input-row">
-          <input type="text" id="chatInput" placeholder="e.g. What's your process?" />
-          <button class="chat-send" id="chatSend">Send</button>
+      </section>
+
+      <!-- ACHIEVEMENTS -->
+      <section id="achievements">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <span class="eyebrow">Achievements</span>
+            <h2>Recognition along the way.</h2>
+          </div>
+          <div class="achieve-list reveal">
+            <div class="achieve-item">
+              <div>
+                <div class="achieve-item__title">
+                  Champion — LumiNotes, University Hackathon
+                </div>
+                <div class="achieve-item__sub">
+                  Energy billing app, designed and built under a hackathon
+                  deadline
+                </div>
+              </div>
+              <span class="achieve-item__year">Hackathon</span>
+            </div>
+            <div class="achieve-item">
+              <div>
+                <div class="achieve-item__title">University Scholar</div>
+                <div class="achieve-item__sub">
+                  Manuel S. Enverga University Foundation - Candelaria, Inc.
+                </div>
+              </div>
+              <span class="achieve-item__year">Academic</span>
+            </div>
+            <div class="achieve-item">
+              <div>
+                <div class="achieve-item__title">Dean's Lister</div>
+                <div class="achieve-item__sub">BS Computer Science</div>
+              </div>
+              <span class="achieve-item__year">Academic</span>
+            </div>
+            <div class="achieve-item">
+              <div>
+                <div class="achieve-item__title">Integrated Society of Information Technology Enthusiasts - ISITE Inc 2025 Participant</div>
+                <div class="achieve-item__sub">Quizbee Competition</div>
+              </div>
+              <span class="achieve-item__year">Academic</span>
+            </div>
+          </div>
         </div>
-        <div class="chat-suggestions">
-          <button data-question="Tell me about your design journey">Journey</button>
-          <button data-question="What are your core skills?">Skills</button>
-          <button data-question="Tell me about LumiNotes">LumiNotes</button>
-          <button data-question="What's your design process?">Process</button>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="wrap contact">
+          <span class="eyebrow reveal">Contact</span>
+          <h2 class="contact__title reveal">
+            Let's build something meaningful.
+          </h2>
+          <div class="contact__row reveal">
+            <a href="mailto:hello@renielmedrano.com" class="btn btn--primary"
+              >Email me →</a
+            >
+            <a
+              href="https://www.linkedin.com/in/reniel-medrano-828b39391"
+              class="btn btn--ghost"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a
+              href="/assets/resume/Reniel_Medrano resume.pdf"
+              class="btn btn--ghost"
+              download
+              >Download résumé</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footer__row">
+          <span>© <span data-year>2026</span> Reniel Medrano</span>
+          <div class="footer__links">
+            <a href="mailto:renielmedrano4@gmail.com">Email</a>
+            <a
+              href="https://www.linkedin.com/in/reniel-medrano-828b39391"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+          </div>
         </div>
       </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer id="contact">
-      <div class="footer-grid">
-        <div class="footer-brand"><h4>Reniel Medrano</h4><p>Designing digital products that are simple, useful, and human — one screen at a time.</p></div>
-        <div class="footer-col"><h4>Navigate</h4><ul><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#process">Process</a></li></ul></div>
-        <div class="footer-col"><h4>Connect</h4><ul><li><a href="mailto:renielmedrano4@gmail.com">Email</a></li><li><a href="https://www.linkedin.com/in/reniel-medrano-828b39391/">LinkedIn</a></li></ul></div>
-        <div class="footer-col"><h4>Say hello</h4><ul><li><a href="#contact">Start a project</a></li><li><a href="mailto:renielmedrano4@gmail.com">renielmedrano4@gmail.com</a></li></ul></div>
-      </div>
-      <div class="footer-bottom"><span>© <span id="year"></span> Reniel Medrano. All rights reserved.</span><span>Built with care in the Philippines</span></div>
     </footer>
 
-    <script>
-      (function () {
-        // ---- mobile nav ----
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        if (navToggle) {
-          navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-          document.querySelectorAll('.nav-links a').forEach(a => {
-            a.addEventListener('click', () => navLinks.classList.remove('open'));
-          });
-        }
-
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // ---- experience expand ----
-        document.querySelectorAll('.exp-card').forEach(card => {
-          const toggle = card.querySelector('.exp-toggle');
-          if (!toggle) return;
-          toggle.addEventListener('click', function (e) {
-            e.stopPropagation();
-            card.classList.toggle('expanded');
-            this.querySelector('.label').textContent = card.classList.contains('expanded') ? 'Show less' : 'Show more';
-          });
-          card.addEventListener('click', function (e) {
-            if (e.target.closest('.exp-toggle')) return;
-            this.classList.toggle('expanded');
-            const label = this.querySelector('.exp-toggle .label');
-            if (label) label.textContent = this.classList.contains('expanded') ? 'Show less' : 'Show more';
-          });
-        });
-
-        function isExternalLink(url) {
-          if (!url || url === '#') return false;
-          return url.startsWith('http://') || url.startsWith('https://');
-        }
-
-        const PROJECTS = [
-          {
-            title: "LumiNotes — Energy Billing App",
-            category: "Hackathon · 1st Place",
-            thumbImage: "assets/luminotes.png",
-            summary: "A mobile app designed to help users easily monitor and manage their energy bills.",
-            problem: "PLACEHOLDER: What was the core problem LumiNotes solved? (e.g. who struggles with reading energy bills, and why).",
-            decisions: ["PLACEHOLDER: A key UI or flow decision you made and the reasoning behind it", "PLACEHOLDER: A trade-off you weighed (e.g. simplicity vs. data depth)", "PLACEHOLDER: How you validated the direction with judges or users"],
-            outcome: "Won 1st place at the university hackathon.",
-            isPlaceholder: true,
-            tags: ["Mobile", "Hackathon", "Energy"],
-            link: "https://www.figma.com/proto/qcHjEcbE2DixqXUpmrPbLL/The-Figma-Fuelled-Galactic-Overlord-Pixies-Interface-Battalion?node-id=450-6590&t=AFPBaTsNjXYFJ8i1-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=450%3A6590"
-          },
-          {
-            title: "EUC Paynroll — Enrollment and Tuition Payment Portal",
-            category: "Web Design and Development",
-            thumbImage: "assets/eucpaynroll.png",
-            summary: "Web app for easy access of tuition and enrollment management.",
-            problem: "PLACEHOLDER: What is the problem with the current enrollment and tuition payment process, and who is affected by it.",
-            decisions: ["PLACEHOLDER: What changes you made to the user flow or interface to address the problem", "PLACEHOLDER: How efficiently users can complete their tasks compared to the previous system"],
-            outcome: "PLACEHOLDER: The idea of the prototype has been applied and modified by the university for their current enrollment and tuition payment system.",
-            isPlaceholder: true,
-            tags: ["Web", "Self-initiated", "Government service"],
-            link: "https://eucpaynroll.ccsdepartment.com/admission_registrar/login.html"
-          },
-          {
-            title: "Condominium Billing Management — Web-based system",
-            category: "Web design and Development",
-            thumbImage: "assets/governor's place.png",
-            summary: "Web app for monitoring and paying condominium bills efficiently.",
-            problem: "Stakeholders and tenants needed a more efficient way to manage and pay condominium bills, as the existing process was cumbersome and time-consuming.",
-            decisions: ['Designed a clean and intuitive dashboard interface to provide users with a clear overview of their billing information and payment history.', "Tested payment flows with users to ensure a smooth and secure transaction process, reducing errors and increasing user confidence."],
-            outcome: "PLACEHOLDER: Approved Demo for the billing management system.",
-            isPlaceholder: true,
-            tags: ["Dashboard", "Healthcare", "Figma"],
-            link: "https://governor-s-place.web.app/index.html"
-          },
-        ];
-
-        function renderProjects() {
-          const grid = document.getElementById('projectGrid');
-          if (!grid) return;
-          grid.innerHTML = PROJECTS.map((p) => {
-            const isExternal = isExternalLink(p.link);
-            const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
-            const externalIcon = isExternal ? ' <span class="external-link-icon">↗</span>' : '';
-            return `
-              <a href="${p.link || '#'}" class="project-card-link"${targetAttr}>
-                <article class="project-card">
-                  <div class="project-thumb">
-                    <img src="${p.thumbImage}" alt="${p.title}" onerror="this.style.display='none'; this.parentElement.innerHTML = '<div style=\\'display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:var(--text-muted);font-size:0.9rem;\\'>No image available</div>';" />
-                  </div>
-                  <div class="project-body">
-                    <h3>${p.title}${externalIcon}</h3>
-                    <p>${p.summary}</p>
-                    <div class="case-meta">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
-                    <span class="case-toggle"><span class="label">View case study</span><span class="arrow">→</span></span>
-                  </div>
-                </article>
-              </a>
-            `;
-          }).join('');
-        }
-
-        // ---- process walkthrough ----
-        let currentStep = 1;
-        const totalSteps = 6;
-        const processSteps = [
-          { title: "Discover", copy: "I start by understanding the real problem — talking to users, reviewing analytics, and mapping the business goals before touching any UI.", tags: ["User interviews", "Stakeholder workshops", "Competitive audit"] },
-          { title: "Define", copy: "Research gets synthesized into clear problem statements, personas, and success metrics that every later decision can be checked against.", tags: ["Personas", "Problem statements", "Success metrics"] },
-          { title: "Ideate", copy: "I explore multiple directions fast — sketches, user flows, and low-fidelity wireframes — before committing to one solution.", tags: ["Sketches", "User flows", "Wireframes"] },
-          { title: "Design", copy: "Polished high-fidelity interfaces, visual hierarchy, usability, and AI-enhanced details.", tags: ["Visual Hierarchy", "Design system", "High fidelity UI"] },
-          { title: "Prototype", copy: "Interactive prototypes to test navigation flow and usability pre-development.", tags: ["Core User flow", "Interactive states", "Edge Cases"] },
-          { title: "Test & Iterate", copy: "Usability testing and post-launch metrics tell me what actually works, and the design keeps evolving from there.", tags: ["Usability testing", "A/B testing", "Post-launch review"] },
-        ];
-
-        function renderSteps() {
-          const bar = document.getElementById('stepBar');
-          if (!bar) return;
-          bar.innerHTML = '';
-          for (let i = 1; i <= totalSteps; i++) {
-            const btn = document.createElement('button');
-            btn.className = 'step-btn' + (i === currentStep ? ' active' : '') + (i < currentStep ? ' done' : '');
-            btn.textContent = 'Step ' + i;
-            btn.addEventListener('click', () => { currentStep = i; renderAll(); });
-            bar.appendChild(btn);
-          }
-        }
-
-        function renderPanel() {
-          const panel = document.getElementById('contactPanel');
-          if (!panel) return;
-          const step = processSteps[currentStep - 1];
-          if (!step) return;
-          panel.innerHTML = `
-            <div class="contact-eyebrow">My Process — Step ${currentStep} of ${totalSteps}</div>
-            <h3>${step.title}</h3>
-            <p>${step.copy}</p>
-            <div class="option-grid">${step.tags.map(t => `<div class="option-card selected">${t}</div>`).join('')}</div>
-            <div class="contact-footer">
-              <button class="btn btn-secondary" id="prevBtn" ${currentStep === 1 ? 'disabled' : ''}>Back</button>
-              <button class="btn btn-primary" id="nextBtn" ${currentStep === totalSteps ? 'disabled' : ''}>${currentStep === totalSteps ? 'Final step' : 'Next step'}</button>
-            </div>
-          `;
-          document.getElementById('prevBtn')?.addEventListener('click', () => { if (currentStep > 1) { currentStep--; renderAll(); } });
-          document.getElementById('nextBtn')?.addEventListener('click', () => { if (currentStep < totalSteps) { currentStep++; renderAll(); } });
-        }
-
-        function renderAll() { renderSteps(); renderPanel(); }
-
-        // ---- CHATBOT ----
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        const chatSend = document.getElementById('chatSend');
-
-        // Knowledge base derived from the provided "UI/UX Design Skills" file
-        const knowledge = {
-          journey: "I started in Computer Science, but I fell in love with the part of tech that people actually interact with — the interface. I designed for university projects, built PayNRoll for my thesis, and started studying UX principles deeply. I've competed in hackathons (won 1st place with LumiNotes!), audited products like Kraymer Art, and I'm now pursuing professional UI/UX roles. I'm an early-career designer who's genuinely obsessed with understanding how interfaces work.",
-          skills: "My core skills span UX research, user flows, wireframing, high-fidelity prototyping in Figma, and front-end development (HTML, CSS, JavaScript, React, Tailwind). I apply principles like Jakob's heuristics, Fitts's Law, Hick's Law, and visual hierarchy. I also bridge design and code — I don't just throw designs over the wall, I understand how they're built.",
-          luminotes: "LumiNotes is a mobile app for monitoring energy bills. I designed the user flows, wireframes, and high-fidelity mockups in Figma. It won 1st place at a university hackathon. The core challenge was making complex billing data simple and actionable for users.",
-          eucpaynroll: "EUC Paynroll is a web app for enrollment and tuition payment. I designed the interface and user flow as part of my thesis. The prototype was later applied and modified by the university for their actual system.",
-          condo: "The Condominium Billing Management system is a web-based dashboard for monitoring and paying bills. I designed the interface to give tenants a clear overview of their payments and history, with a focus on reducing friction in the payment flow.",
-          process: "My design process has 6 steps: Discover (user interviews, stakeholder workshops), Define (personas, problem statements), Ideate (sketches, user flows, wireframes), Design (high-fidelity UI, design system), Prototype (interactive flows), and Test & Iterate (usability testing, post-launch review). I iterate based on feedback and metrics.",
-          general: "I'm a UI/UX designer with a CS background, passionate about creating simple, useful, and human digital products. I have experience in Figma, front-end development, and applying UX psychology. I'm currently building my portfolio and looking for opportunities to grow as a product designer."
-        };
-
-        function getResponse(input) {
-          const lower = input.toLowerCase();
-          if (lower.includes('journey') || lower.includes('story') || lower.includes('background') || lower.includes('start')) return knowledge.journey;
-          if (lower.includes('skill') || lower.includes('tools') || lower.includes('figma') || lower.includes('front-end') || lower.includes('html') || lower.includes('css')) return knowledge.skills;
-          if (lower.includes('luminotes') || lower.includes('hackathon') || lower.includes('energy')) return knowledge.luminotes;
-          if (lower.includes('paynroll') || lower.includes('euc') || lower.includes('enrollment') || lower.includes('tuition')) return knowledge.eucpaynroll;
-          if (lower.includes('condo') || lower.includes('billing') || lower.includes('governor')) return knowledge.condo;
-          if (lower.includes('process') || lower.includes('step') || lower.includes('method') || lower.includes('discover') || lower.includes('define') || lower.includes('ideate')) return knowledge.process;
-          return knowledge.general;
-        }
-
-        function addMessage(text, isUser = false) {
-          const div = document.createElement('div');
-          div.className = 'chat-msg' + (isUser ? ' user' : '');
-          div.textContent = text;
-          chatMessages.appendChild(div);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function handleChat() {
-          const input = chatInput.value.trim();
-          if (!input) return;
-          addMessage(input, true);
-          const response = getResponse(input);
-          setTimeout(() => addMessage(response), 300);
-          chatInput.value = '';
-        }
-
-        chatSend.addEventListener('click', handleChat);
-        chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleChat(); });
-
-        document.querySelectorAll('.chat-suggestions button').forEach(btn => {
-          btn.addEventListener('click', () => {
-            chatInput.value = btn.dataset.question;
-            handleChat();
-          });
-        });
-
-        // ---- init ----
-        renderProjects();
-        renderAll();
-
-        // ---- scroll reveal ----
-        const revealTargets = document.querySelectorAll('.exp-card, .project-card, .timeline li');
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.style.opacity = '1';
-              entry.target.style.transform = 'translateY(0)';
-              io.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12 });
-        revealTargets.forEach(el => {
-          el.style.opacity = '0';
-          el.style.transform = 'translateY(18px)';
-          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          io.observe(el);
-        });
-      })();
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
